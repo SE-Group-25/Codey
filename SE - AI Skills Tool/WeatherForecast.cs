@@ -1,4 +1,4 @@
-namespace SE___AI_Skills_Tool;
+namespace SE_AI_Skills_Tool;
 
 public class WeatherForecast
 {

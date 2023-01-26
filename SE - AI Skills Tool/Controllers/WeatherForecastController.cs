@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace SE___AI_Skills_Tool.Controllers;
+namespace SE_AI_Skills_Tool.Controllers;
 
 [ApiController]
 [Route("[controller]")]

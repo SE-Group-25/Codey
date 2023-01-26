@@ -7,12 +7,26 @@ a.navbar-brand {
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.nav-item {
+  background-color: #152C61;
+  border-color: #152C61;
+  border-radius: 0.5rem;
+}
+
+.navbar-blue {
+  color: #fff;
+  background-color: #121F3D;
+  border-color: #121F3D;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-family: Inter, sans-serif;
+  font-weight: bolder;
+  font-size: medium;
 }

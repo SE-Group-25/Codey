@@ -1,9 +1,9 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-blue py-4 mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">SE___AI_Skills_Tool</a>
+      <a class="navbar-brand text-light" [routerLink]="['/']">Codey</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -21,20 +21,25 @@
       >
         <ul class="navbar-nav flex-grow">
           <li
-            class="nav-item"
+            class="nav-item btn-blue mx-2 px-3 py-1"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-light" [routerLink]="['/']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
+          <li class="nav-item btn-blue mx-2 px-3 py-1" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-light" [routerLink]="['/counter']"
               >Counter</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
+          <li class="nav-item btn-blue mx-2 px-3 py-1" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-light" [routerLink]="['/fetch-data']"
               >Fetch data</a
+            >
+          </li>
+          <li class="nav-item btn-blue mx-2 px-3 py-1" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-light" [routerLink]="['/login']"
+            >Login</a
             >
           </li>
         </ul>

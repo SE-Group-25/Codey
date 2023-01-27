@@ -4,15 +4,10 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.navbar-blue {
+  color: rgb(248,249,250);
+  background-color: #121F3D;
+  border-color: #121F3D;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }

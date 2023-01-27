@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  background-color: #081428;
+  color: rgb(248,249,250);
+  font-family: Roboto, sans-serif;
+}
+
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.rounded-cube {
+  background-color: #121f3d;
+  border-radius: 0.5rem;
+}
+
+.vh-90 {
+  height:90vh!important
+}
+
+.btn-blue {
+  background-color: #152C61;
+  border-color: #152C61;
+  border-radius: 0.5rem;
+  color: rgb(248,249,250);
+  font-weight: bolder;
+  font-size: medium;
+}

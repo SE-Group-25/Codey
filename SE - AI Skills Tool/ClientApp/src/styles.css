@@ -15,8 +15,17 @@ code {
   color: #e01a76;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.rounded-cube {
+  background-color: #152C61;
+  border-radius: 0.5rem;
+}
+
+.vh-90 {
+  height:90vh!important
+}
+
+.btn-blue {
+  background-color: #152C61;
+  border-color: #152C61;
+  border-radius: 0.5rem;
 }

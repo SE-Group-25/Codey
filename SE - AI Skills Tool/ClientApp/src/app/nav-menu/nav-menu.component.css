@@ -4,23 +4,10 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
 .navbar-blue {
-  color: #fff;
+  color: rgb(248,249,250);
   background-color: #121F3D;
   border-color: #121F3D;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  font-family: Inter, sans-serif;
-  font-weight: bolder;
-  font-size: medium;
 }

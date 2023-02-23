@@ -1,8 +1,35 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore;
+using SE_AI_Skills_Tool.Context;
+using SE_AI_Skills_Tool.Models;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+                            {
+                                options.IdleTimeout = TimeSpan.FromSeconds(3600);
+                                options.Cookie.HttpOnly = true;
+                                options.Cookie.IsEssential = true;
+                            });
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+// var connectionStringAstDev = Environment.GetEnvironmentVariable("astdevConnectionString", EnvironmentVariableTarget.Process);
+var connectionStringAstDev = builder.Configuration.GetConnectionString("astdevConnectionString");
+
+if (!string.IsNullOrEmpty(connectionStringAstDev))
+{
+    builder.Services.AddDbContext<AstDevContext>(opts => opts.UseSqlServer(connectionStringAstDev));
+}
+
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+       .AddEntityFrameworkStores<AstDevContext>();
 
 var app = builder.Build();
 
@@ -16,6 +43,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+// app.UseAuthentication();
+// app.UseAuthorization();
 
 app.MapControllerRoute(name: "default",
                        pattern: "{controller}/{action=Index}/{id?}");

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
 using SE_AI_Skills_Tool.Context;
 using SE_AI_Skills_Tool.Models;
+using SE_AI_Skills_Tool.Extensions;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +27,10 @@ if (!string.IsNullOrEmpty(connectionStringAstDev))
 {
     builder.Services.AddDbContext<AstDevContext>(opts => opts.UseSqlServer(connectionStringAstDev));
 }
-
+else
+{
+    throw new Exception("Connection Strings are missing.");
+}
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
        .AddEntityFrameworkStores<AstDevContext>();

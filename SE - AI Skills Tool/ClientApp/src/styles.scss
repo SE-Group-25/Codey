@@ -43,3 +43,8 @@ code {
   font-weight: bolder;
   font-size: medium;
 }
+
+.btn-blue:hover{
+  background-color: #000000;
+  transition: background-color 0.2s ease;
+}

@@ -1,0 +1,67 @@
+.Codey {
+    background-color: #152C43;
+    text-align: center;
+    padding: 5% 0;
+    border-top-right-radius: 83px;
+    border-top-left-radius: 83px;
+    border-top-style: inset;
+    border-top-color: #4e89c4;
+    margin-top: 4%;
+  }
+  
+  .Codey__title {
+    font-size: 3rem;
+    margin-bottom: 4%;
+    font-family: 'Open Sans', sans-serif;
+    color: #bc8484;
+    font-weight: bolder;
+  }
+  
+  .Codey__description {
+    font-size: 1.2rem;
+    margin-bottom: 6%;
+  }
+  
+  .Codey__cta-btn {
+    display: inline-block;
+    font-size: larger;
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bolder;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .Codey__cta-btn:hover {
+    background-color: #fff;
+    color: #1a1a1a;
+  }
+  
+  .features {
+    background-color: #152C43;
+    padding: 10px 0;
+    border-radius: 5px;
+  }
+  
+  .feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    align-items: flex-end;
+  }
+   
+  .feature__title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    margin-left: 8%;
+    color: #bc8484;
+  }
+  
+  .feature__description
+  {
+    font-size: 1.2rem;
+    margin-left: 1%;
+    }  
+

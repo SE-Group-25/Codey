@@ -15,13 +15,9 @@
         <PackageReference Include="AutoMapper" Version="12.0.1" />
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
         <PackageReference Include="IBM.Watson.Assistant.v2" Version="6.1.0" />
-<<<<<<< Updated upstream
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.14" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.14" />
-=======
         <PackageReference Include="IBM.Watson.NaturalLanguageUnderstanding.v1" Version="6.1.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.14" />
->>>>>>> Stashed changes
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
         <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.8" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />

@@ -8,7 +8,7 @@ namespace SE_AI_Skills_Tool.Services
     public interface IWatson
     {
         // Task<string> SendInputToWatson(string input);
-        void Message();
+        string Message(string msgString);
 
         void CreateSession();
 
@@ -27,7 +27,7 @@ namespace SE_AI_Skills_Tool.Services
         private readonly string assistantId = "14fdb056-2832-4a06-9169-4fe7179a08cc";
         private readonly string environmentId = "c98904e6-021b-4e21-9c66-15b4c5c41ab4";
         string sessionId;
-        private readonly string inputString = "Hello World!";
+        //private readonly string inputString = "Hello World!";
 
         // public Watson(AstDevContext astDev)
         // {
@@ -63,7 +63,7 @@ namespace SE_AI_Skills_Tool.Services
                                               );
         }
 
-        public void Message()
+        public string Message(string msgString)
         {
             IamAuthenticator authenticator = new IamAuthenticator(apikey: $"{apikey}");
 
@@ -75,9 +75,10 @@ namespace SE_AI_Skills_Tool.Services
                                          sessionId: $"{sessionId}",
                                          input: new MessageInput()
                                                 {
-                                                    Text = "What courses does the IBM Skills build provide"
+                                                    Text = msgString
                                                 });
             Console.WriteLine(result.Response);
+            return result.Response;
         }
 
 

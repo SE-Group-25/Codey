@@ -7,6 +7,12 @@ namespace SE_AI_Skills_Tool.Controllers
     [Route("[controller]")]
     public class WeatherForecastController: ControllerBase
     {
+        
+        
+        public Watson chat = new Watson();
+
+        
+        
         private static readonly string[] Summaries = new[]
                                                      {
                                                          "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -31,15 +37,44 @@ namespace SE_AI_Skills_Tool.Controllers
                              .ToArray();
         }
 
-        [HttpGet("Message")]
-        public void SendMessage()
+        // [HttpGet("Message")]
+        // public void SendMessage()
+        // {
+        //     Watson chat = new Watson();
+        //     chat.CreateSession();
+        //     chat.Message();
+        //     chat.DeleteSession();
+        //
+        //     Console.WriteLine("DONE!!!");
+        // }
+
+        [HttpGet("Analyze")]
+        public void AnalyzeMessage()
         {
-            Watson chat = new Watson();
+            WatsonNLUService example = new WatsonNLUService();
+
+            example.Analyze();
+
+            Console.WriteLine("Example Complete");
+        }
+
+        
+        [HttpGet("StartChat")]
+        public void StartChat()
+        {
             chat.CreateSession();
-            chat.Message();
+        }
+
+        [HttpGet("Message")]
+        public string Message(string msgString)
+        {
+            return chat.Message(msgString);
+        }
+        
+        [HttpGet("CloseChat")]
+        public void CloseChat()
+        {
             chat.DeleteSession();
-            
-            Console.WriteLine("DONE!!!");
         }
     }
 }

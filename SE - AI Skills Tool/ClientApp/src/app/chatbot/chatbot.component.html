@@ -3,7 +3,7 @@
     <div *ngFor="let message of messages">
       <span>
         <h6 [ngClass]="message.bot ? 'text-left bot' : 'text-right user'">{{message.bot ? 'Codey' : 'You'}}</h6>
-        <div [ngClass]="message.bot ? 'left text-left' : 'right text-right'" class="message rounded-cube">
+        <div [ngClass]="message.bot ? 'left' : 'right'" class="message rounded-cube">
           <span *ngFor="let line of splitMessage(message.text)">
             <p>{{line}}</p>
           </span>

@@ -1,0 +1,121 @@
+.chatbot {
+  background-color: #121f3d;
+  margin: auto;
+  padding: 1rem;
+  width: 50%;
+  height: 65vh;
+  transform: translateY(10vh);
+}
+
+.chatbot .container {
+  display: flex;
+  flex-direction: column;
+  /*justify-content: flex-end;*/
+  height: 90%;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.chatbot .container::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.chatbot .container::-webkit-scrollbar-track {
+  background: #121f3d;
+}
+
+.chatbot .container::-webkit-scrollbar-thumb {
+  background: #1d3263;
+  border-radius: 3rem;
+}
+
+.chatbot .container::-webkit-scrollbar-thumb:hover {
+  background: #172c5d;
+}
+
+.chatbot  .container > :first-child {
+  margin-top: auto !important;
+}
+.chatbot .message {
+  background-color: #1d3263;
+  padding: 0.75rem 1rem 0 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+  line-height: 125%;
+}
+
+.chatbot .user {
+  color: #fe9900;
+  font-weight: bolder;
+}
+
+.chatbot .bot {
+  color: #ca3435;
+  font-weight: bolder;
+}
+
+.chatbot .text-left {
+  text-align: left;
+  text-align-last: left;
+}
+
+.chatbot .text-right {
+  text-align: right;
+  text-align-last: right;
+}
+
+.chatbot .left {
+  float: left;
+}
+
+.chatbot .right {
+  float: right;
+}
+
+.chatbot .form {
+  display: flex;
+  flex-direction: row;
+  height: 10%;
+  width: 100%;
+  justify-content: space-between;
+  /*padding: 1rem;*/
+}
+
+.chatbot .form-item {
+  flex-grow: 1;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.chatbot .text-input {
+  background-color: #1d3263;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: rgb(248,249,250);
+  flex-grow: 3;
+  margin-right: 0.5rem;
+  margin-left: 0.75rem;
+}
+
+.chatbot .btn-blue {
+  background-color: #1e46a4;
+  border-width: 0;
+  flex-grow: 1;
+  flex-basis: 5rem;
+  margin-right: 1rem;
+  margin-left: 0.5rem;
+}
+
+.chatbot .btn-blue:hover {
+  background-color: #143071;
+}
+
+.chatbot .send {
+  background-color: #1E46A4;
+}
+
+.chatbot p {
+  color: #ffffff;
+}

@@ -38,8 +38,8 @@
 }
 .chatbot .message {
   background-color: #1d3263;
-  padding: 1rem 1rem 0 1rem;
-  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem 0 1rem;
+  margin-bottom: 0.75rem;
   max-width: 100%;
   line-height: 125%;
 
@@ -74,10 +74,12 @@
 
 .chatbot .left {
   float: left;
+  border-top-left-radius: 0.1rem;
 }
 
 .chatbot .right {
   float: right;
+  border-top-right-radius: 0.1rem;
 }
 
 .chatbot .form {
@@ -126,4 +128,12 @@
 
 .chatbot p {
   color: rgb(248,249,250);
+}
+
+.chatbot .text:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
+
+.chatbot .text:last-child {
+  margin-bottom: 0.75rem;
 }

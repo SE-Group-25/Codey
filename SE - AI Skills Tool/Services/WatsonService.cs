@@ -7,12 +7,11 @@ namespace SE_AI_Skills_Tool.Services
 {
     public interface IWatson
     {
-        // Task<string> SendInputToWatson(string input);
-        string Message(string msgString);
+        string Message(string msgString, string sessionId);
 
-        void CreateSession();
+        string CreateSession();
 
-        void DeleteSession();
+        void DeleteSession(string sessionId);
     }
 
     public class Watson: IWatson
@@ -26,15 +25,13 @@ namespace SE_AI_Skills_Tool.Services
         private readonly string versionDate = "2022-06-01";
         private readonly string assistantId = "14fdb056-2832-4a06-9169-4fe7179a08cc";
         private readonly string environmentId = "c98904e6-021b-4e21-9c66-15b4c5c41ab4";
-        string sessionId;
-        //private readonly string inputString = "Hello World!";
 
-        // public Watson(AstDevContext astDev)
-        // {
-        //     _astDev = astDev;
-        // }
+        public Watson(AstDevContext astDev)
+        {
+            _astDev = astDev;
+        }
 
-        public void CreateSession()
+        public string CreateSession()
         {
             IamAuthenticator authenticator = new IamAuthenticator(apikey: $"{apikey}");
 
@@ -44,26 +41,23 @@ namespace SE_AI_Skills_Tool.Services
             var result = service.CreateSession(
                                                assistantId: $"{environmentId}"
                                               );
-
-            Console.WriteLine(result.Response);
-
-            sessionId = result.Result.SessionId;
+            return result.Result.SessionId;
         }
 
-        public void DeleteSession()
+        public void DeleteSession(string sessionId)
         {
             IamAuthenticator authenticator = new IamAuthenticator(apikey: $"{apikey}");
-
+        
             AssistantService service = new AssistantService($"{versionDate}", authenticator);
             service.SetServiceUrl($"{url}");
-
+        
             var result = service.DeleteSession(
                                                assistantId: $"{environmentId}",
                                                sessionId: $"{sessionId}"
                                               );
         }
 
-        public string Message(string msgString)
+        public string Message(string msgString, string sessionId)
         {
             IamAuthenticator authenticator = new IamAuthenticator(apikey: $"{apikey}");
 
@@ -80,21 +74,5 @@ namespace SE_AI_Skills_Tool.Services
             Console.WriteLine(result.Response);
             return result.Response;
         }
-
-
-        // public async Task<string> SendInputToWatson(string input)
-        // {
-        //     IamAuthenticator authenticator = new IamAuthenticator(apikey: "{apikey}");
-        //
-        //     AssistantService assistant = new AssistantService("{version}", authenticator);
-        //     assistant.SetServiceUrl("https://api.au-syd.assistant.watson.cloud.ibm.com/instances/dfad6e7a-2714-4f7f-ba32-4537dd5370f8");
-        //
-        //     MessageInput messageInput = new MessageInput()
-        //                          {
-        //                              Text = "Hello"
-        //                          };
-        //
-        //     MessageResponse response = assistant.Message("14fdb056-2832-4a06-9169-4fe7179a08cc", messageInput);
-        // }
     }
 }

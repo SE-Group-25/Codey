@@ -5,27 +5,34 @@ using SE_AI_Skills_Tool.Services;
 namespace SE_AI_Skills_Tool.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("chatbot")]
+    // [Route("[controller]")]
     public class CodeyController: ControllerBase
     {
-        public Watson chat = new Watson();
+        public string sessionId;
+        private readonly IWatson _watson;
 
+        public CodeyController(IWatson watson)
+        {
+            _watson = watson;
+        }
+            
         [HttpGet("StartChat")]
         public void StartChat()
         {
-            chat.CreateSession();
+            _watson.CreateSession();
         }
 
         [HttpGet("Message")]
         public string Message(string msgString)
         {
-            return chat.Message(msgString);
+            if (sessionId == null)
+            {
+                sessionId = _watson.CreateSession();
+            }
+            return _watson.Message(msgString, sessionId);
         }
-        
-        [HttpGet("CloseChat")]
-        public void CloseChat()
-        {
-            chat.DeleteSession();
-        }
+
+        // ToDo: Write function to close the chat session. 
     }
 }

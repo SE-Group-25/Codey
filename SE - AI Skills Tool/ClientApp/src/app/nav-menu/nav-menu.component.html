@@ -30,11 +30,11 @@
             <a class="nav-link text-light px-3" [routerLink]="['/chatbot']">Chatbot</a>
           </li>
           <li class="nav-item btn-blue mx-2 py-1 my-1" *ngIf="!authService.isAuthenticated">
-            <a class="nav-link text-light px-3" href="#" (click)="authService.signIn()">Login</a>
+            <a class="nav-link text-light px-3" href="javascript:void(0);" (click)="authService.signIn()">Login</a>
           </li>
 <!--          Profile Button instead of log out-->
           <li class="nav-item btn-blue mx-2 py-1 my-1" *ngIf="authService.isAuthenticated">
-            <a class="nav-link text-light px-3" href="#" (click)="authService.signOut()">Logout</a>
+            <a class="nav-link text-light px-3" href="javascript:void(0);" (click)="authService.signOut()">Logout</a>
           </li>
         </ul>
       </div>

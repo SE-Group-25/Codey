@@ -1,4 +1,5 @@
 import {AfterViewChecked, Component} from '@angular/core';
+import { ChatbotService } from '../services/chatbotservice/chatbot.service';
 
 @Component({
   selector: 'app-chatbot',
@@ -12,7 +13,7 @@ export class ChatbotComponent implements AfterViewChecked {
   // private oldChatbotDiv: HTMLElement;
 
   public updateScroll: boolean = false;
-  constructor() {
+  constructor(private _chatbot: ChatbotService) {
     this.messages = [
       {"bot": true, "text": "Hi, my name is Codey!\nWhat course are you studying?"}
     ];
@@ -43,7 +44,14 @@ export class ChatbotComponent implements AfterViewChecked {
     let message = event.target.text.value;
     if (!this.canSend || message == "") return;
     this.addMessage(message, false);
+    console.log(message);
+
     // CALL WATSON API WITH message
+    this._chatbot.sendMessage('chatbot/Message', message)
+      .subscribe((res: string)  => {
+        this.messages.push(res);
+      })
+
     event.target.text.value = "";
   }
 }

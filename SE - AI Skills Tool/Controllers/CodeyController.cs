@@ -23,7 +23,7 @@ namespace SE_AI_Skills_Tool.Controllers
             _watson.CreateSession();
         }
 
-        [HttpGet("Message")]
+        [HttpPost("Message")]
         public string Message(string msgString)
         {
             if (sessionId == null)

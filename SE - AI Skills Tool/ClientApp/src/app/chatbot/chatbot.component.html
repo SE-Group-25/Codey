@@ -1,12 +1,15 @@
-<div class="chatbot rounded-cube">
+<div class="chatbot rounded-cube" xmlns="http://www.w3.org/1999/html">
   <div id="scroll_view" class="container">
-    <div *ngFor="let message of messages">
+    <div class="flex-container" *ngFor="let message of messages">
       <span>
         <h6 [ngClass]="message.bot ? 'text-left bot' : 'text-right user'">{{message.bot ? 'Codey' : 'You'}}</h6>
-        <div [ngClass]="message.bot ? 'left text-left' : 'right text-right'" class="message rounded-cube">
-          <span *ngFor="let line of splitMessage(message.text)">
-            <p>{{line}}</p>
-          </span>
+        <div [ngClass]="message.bot ? 'left' : 'right'" class="message rounded-cube">
+          <p class="text" *ngFor="let line of splitMessage(message.text)">{{line}}</p>
+        </div>
+      </span>
+      <span *ngIf="message.options !== undefined && message === messages[messages.length - 1]" [ngClass]="messages.length == 1 ? null : 'options'">
+        <div (click)="chooseOption(option)" class="option btn-blue" *ngFor="let option of message.options">
+          <a class="text-light text" href="javascript:void(0);">{{option.label}}</a>
         </div>
       </span>
     </div>

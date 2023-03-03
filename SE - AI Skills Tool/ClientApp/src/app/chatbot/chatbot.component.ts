@@ -1,4 +1,5 @@
 import {AfterViewChecked, Component} from '@angular/core';
+import { ChatbotService } from '../services/chatbotservice/chatbot.service';
 
 @Component({
   selector: 'app-chatbot',
@@ -12,7 +13,7 @@ export class ChatbotComponent implements AfterViewChecked {
   // private oldChatbotDiv: HTMLElement;
 
   public updateScroll: boolean = false;
-  constructor() {
+  constructor(private _chatbot: ChatbotService) {
     this.messages = [];
 
     let landingPage = '{"output":{"generic":[{"response_type":"text","text":"Hi, I\'m Codey!\\nHow can I help you today?"},{"options":[{"label":"Tell me about the IBM Skills Build?","value":{"input":{"text":"Tell me about the IBM Skills Build?"}}},{"label":"What can you do to help?","value":{"input":{"text":"What can you do to help?"}}},{"label":"Can you recommend me a course?","value":{"input":{"text":"Can you recommend me a course?"}}},{"label":"Can you direct me to the IBM Skills Build?","value":{"input":{"text":"Can you direct me to the IBM Skills Build?"}}}],"response_type":"option","repeat_on_reprompt":true}]}}';
@@ -66,6 +67,11 @@ export class ChatbotComponent implements AfterViewChecked {
     if (!this.canSend || message == "") return;
     this.addUserMessage(message);
     // CALL WATSON API WITH message
+    this._chatbot.sendMessage('chatbot/Message', message)
+      .subscribe((res: string)  => {
+        this.messages.push(res);
+      })
+
     event.target.text.value = "";
   }
 

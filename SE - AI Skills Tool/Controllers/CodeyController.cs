@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SE_AI_Skills_Tool.Services;
+using SE_AI_Skills_Tool.BusinessLogic;
 
 
 namespace SE_AI_Skills_Tool.Controllers
@@ -9,7 +10,6 @@ namespace SE_AI_Skills_Tool.Controllers
     // [Route("[controller]")]
     public class CodeyController: ControllerBase
     {
-        public string sessionId;
         private readonly IWatson _watson;
 
         public CodeyController(IWatson watson)
@@ -24,13 +24,13 @@ namespace SE_AI_Skills_Tool.Controllers
         }
 
         [HttpPost("Message")]
-        public string Message(string msgString)
+        public MessageResponseDto Message(SendMessageDto sendMessageDto)
         {
-            if (sessionId == null)
+            if (sendMessageDto.SessionId == null)
             {
-                sessionId = _watson.CreateSession();
+                sendMessageDto.SessionId = _watson.CreateSession();
             }
-            return _watson.Message(msgString, sessionId);
+            return _watson.Message(sendMessageDto.MsgString, sendMessageDto.SessionId);
         }
 
         // ToDo: Write function to close the chat session. 

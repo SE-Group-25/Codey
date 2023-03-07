@@ -6,9 +6,12 @@ namespace SE_AI_Skills_Tool.Models
     [Table("Users")]
     public class User
     {
+        
+        // ToDo: only have Id and courses use ibm login for the user ids use this to link between courses and users.
+        
         [Column("Id")]
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Column("FirstName")]
         public string FirstName { get; set; }
@@ -27,5 +30,8 @@ namespace SE_AI_Skills_Tool.Models
 
         [Column("Courses")]
         public int Courses { get; set; }
+        
+        [Column("SessionId")]
+        public string SessionId { get; set; }
     }
 }

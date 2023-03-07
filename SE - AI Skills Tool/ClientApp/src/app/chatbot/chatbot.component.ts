@@ -17,7 +17,7 @@ export class ChatbotComponent implements AfterViewChecked {
     this.messages = [];
 
     let landingPage = '{"output":{"generic":[{"response_type":"text","text":"Hi, I\'m Codey!\\nHow can I help you today?"},{"options":[{"label":"Tell me about the IBM Skills Build?","value":{"input":{"text":"Tell me about the IBM Skills Build?"}}},{"label":"What can you do to help?","value":{"input":{"text":"What can you do to help?"}}},{"label":"Can you recommend me a course?","value":{"input":{"text":"Can you recommend me a course?"}}},{"label":"Can you direct me to the IBM Skills Build?","value":{"input":{"text":"Can you direct me to the IBM Skills Build?"}}}],"response_type":"option","repeat_on_reprompt":true}]}}';
-    this.parseResponse(landingPage);
+    this.addResponse(landingPage);
   }
 
   public ngAfterViewChecked(): void {
@@ -46,7 +46,7 @@ export class ChatbotComponent implements AfterViewChecked {
     return s.split('\n');
   }
 
-  parseResponse(s: string) {
+  addResponse(s: string) {
     let newMessage : any = {"bot": true};
     let json = JSON.parse(s);
     for (let k of json['output']['generic'].keys()) {

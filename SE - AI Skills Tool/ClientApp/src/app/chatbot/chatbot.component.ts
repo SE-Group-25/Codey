@@ -1,5 +1,6 @@
 import {AfterViewChecked, Component} from '@angular/core';
 import { ChatbotService } from '../services/chatbotservice/chatbot.service';
+import { MessageDto, MessageResponseDto } from '../interfaces/message-dto';
 
 @Component({
   selector: 'app-chatbot',
@@ -13,6 +14,8 @@ export class ChatbotComponent implements AfterViewChecked {
   // private oldChatbotDiv: HTMLElement;
 
   public updateScroll: boolean = false;
+  public messageDto: MessageDto = {};
+
   constructor(private _chatbot: ChatbotService) {
     this.messages = [];
 
@@ -59,6 +62,7 @@ export class ChatbotComponent implements AfterViewChecked {
           break;
       }
     }
+    this.messageDto.sessionId = json['user_id'];
     this.addBotMessage(newMessage);
   }
 
@@ -67,10 +71,20 @@ export class ChatbotComponent implements AfterViewChecked {
     if (!this.canSend || message == "") return;
     this.addUserMessage(message);
     // CALL WATSON API WITH message
-    this._chatbot.sendMessage('chatbot/Message', message)
-      .subscribe((res: string)  => {
-        this.messages.push(res);
-      })
+    this.messageDto!.msgString = message;
+
+    console.log(this.messageDto.sessionId);
+
+    this._chatbot.sendMessage('chatbot/Message', this.messageDto!)
+      .subscribe({
+        next: (res: MessageResponseDto) => {
+          this.parseResponse(res.responseString);
+          //console.log(res.responseString);
+          // let jsonRes = JSON.parse(res.responseString);
+          //   this.addBotMessage(jsonRes.output.generic[0].text);
+          //   this.messageDto!.sessionId = jsonRes.user_id;
+          //   console.log(jsonRes.output.generic[0].text)
+        }});
 
     event.target.text.value = "";
   }
@@ -79,5 +93,13 @@ export class ChatbotComponent implements AfterViewChecked {
     if (!this.canSend) return;
     this.addUserMessage(option['value']['input']['text']);
     // CALL WATSON API WITH message
+
+    this.messageDto!.msgString = option['value']['input']['text'];
+
+    this._chatbot.sendMessage('chatbot/Message', this.messageDto!)
+      .subscribe({
+        next: (res: MessageResponseDto) => {
+          this.parseResponse(res.responseString);
+        }});
   }
 }

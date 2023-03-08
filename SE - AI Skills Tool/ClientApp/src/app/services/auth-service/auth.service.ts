@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor() {
     this.appId = new AppID();
-    this.initClient().then(() => console.log('initialized AuthService.'));
+    this.initClient().then(() => console.log('Initialized AuthService.'));
   }
 
   private async initClient() {
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   get isAuthenticated(): boolean {
-    return !!this.accessToken;
+    return !!this.userInfo;
   }
 
   async setUser(token: any) {
@@ -51,10 +51,20 @@ export class AuthService {
       console.log(this.userInfo.name);
       return this.userInfo.name;
   }
+  get givenName() {
+    return this.userInfo.given_name;
+  }
 
   get email() {
-    console.log(this.userInfo.email);
     return this.userInfo.email;
+  }
+
+  get ID() {
+    return this.userInfo.sub;
+  }
+
+  get user() {
+    return this.userInfo;
   }
 
   async getUserInfo() {

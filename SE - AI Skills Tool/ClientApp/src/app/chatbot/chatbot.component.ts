@@ -19,8 +19,8 @@ export class ChatbotComponent implements AfterViewChecked {
   constructor(private _chatbot: ChatbotService) {
     this.messages = [];
 
-    let landingPage = '{"output":{"generic":[{"response_type":"text","text":"Hi, I\'m Codey!\\nHow can I help you today?"},{"options":[{"label":"Tell me about the IBM Skills Build?","value":{"input":{"text":"Tell me about the IBM Skills Build?"}}},{"label":"What can you do to help?","value":{"input":{"text":"What can you do to help?"}}},{"label":"Can you recommend me a course?","value":{"input":{"text":"Can you recommend me a course?"}}},{"label":"Can you direct me to the IBM Skills Build?","value":{"input":{"text":"Can you direct me to the IBM Skills Build?"}}}],"response_type":"option","repeat_on_reprompt":true}]}}';
-    this.parseResponse(landingPage);
+    let landingPage = '{"output":{"generic":[{"response_type":"text","text":"Hi, I\'m Codey!\\nHow can I help you today?"},{"options":[{"label":"Tell me about the Skills Build?","value":{"input":{"text":"Tell me about the Skills Build?"}}},{"label":"What can you do to help?","value":{"input":{"text":"What can you do to help?"}}},{"label":"Can you recommend me a course?","value":{"input":{"text":"Can you recommend me a course?"}}},{"label":"Can you direct me to the IBM Skills Build?","value":{"input":{"text":"Can you direct me to the IBM Skills Build?"}}}],"response_type":"option","repeat_on_reprompt":true}]}}';
+    this.addResponse(landingPage);
   }
 
   public ngAfterViewChecked(): void {
@@ -36,7 +36,7 @@ export class ChatbotComponent implements AfterViewChecked {
   }
 
   addUserMessage(s: string) {
-    this.messages.push({"bot":false, "text":s});
+    this.messages.push({"bot":false, "texts":[s]});
     this.updateScroll = true;
   }
 
@@ -49,21 +49,26 @@ export class ChatbotComponent implements AfterViewChecked {
     return s.split('\n');
   }
 
-  parseResponse(s: string) {
-    let newMessage : any = {"bot": true};
+  addResponse(s: string) {
+    let newMessage : any = {"bot": true, "texts": []};
     let json = JSON.parse(s);
     for (let k of json['output']['generic'].keys()) {
       switch(json['output']['generic'][k]['response_type']) {
         case 'text':
-          newMessage['text'] = json['output']['generic'][k]['text'];
+          newMessage['texts'].push(json['output']['generic'][k]['text']);
           break;
         case 'option':
           newMessage['options'] = json['output']['generic'][k]['options'];
+          break;
+        case 'suggestion':
+          newMessage['texts'].push(json['output']['generic'][k]['title']);
+          newMessage['suggestions'] = json['output']['generic'][k]['suggestions'];
           break;
       }
     }
     this.messageDto.sessionId = json['user_id'];
     this.addBotMessage(newMessage);
+    console.log(this.messages);
   }
 
   onSubmit(event: any) {
@@ -78,7 +83,7 @@ export class ChatbotComponent implements AfterViewChecked {
     this._chatbot.sendMessage('chatbot/Message', this.messageDto!)
       .subscribe({
         next: (res: MessageResponseDto) => {
-          this.parseResponse(res.responseString);
+          this.addResponse(res.responseString);
           //console.log(res.responseString);
           // let jsonRes = JSON.parse(res.responseString);
           //   this.addBotMessage(jsonRes.output.generic[0].text);
@@ -91,15 +96,15 @@ export class ChatbotComponent implements AfterViewChecked {
 
   chooseOption(option: any) {
     if (!this.canSend) return;
-    this.addUserMessage(option['value']['input']['text']);
+    this.addUserMessage(option['label']);
     // CALL WATSON API WITH message
 
-    this.messageDto!.msgString = option['value']['input']['text'];
+    this.messageDto!.msgString = option['label'];
 
     this._chatbot.sendMessage('chatbot/Message', this.messageDto!)
       .subscribe({
         next: (res: MessageResponseDto) => {
-          this.parseResponse(res.responseString);
+          this.addResponse(res.responseString);
         }});
   }
 }

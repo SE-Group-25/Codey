@@ -9,6 +9,7 @@ export class AuthService {
   private appId;
   private accessToken: string = "";
   private userInfo: any;
+  // private attributes: any;
 
   constructor() {
     this.appId = new AppID();
@@ -32,13 +33,16 @@ export class AuthService {
   async setUser(token: any) {
     this.accessToken = token;
     this.userInfo = await this.getUserInfo();
+    // this.attributes = await this.getAttributes();
   }
 
   async signIn() {
+    // const tokens = await this.appId.signin();
+    // console.log(tokens);
+    // const accessToken = tokens.accessToken;
     const { accessToken } = await this.appId.signin();
-    this.accessToken = accessToken;
+    await this.setUser(accessToken);
     sessionStorage.setItem('token', this.accessToken);
-    this.userInfo = await this.getUserInfo();
   }
 
   async signOut() {
@@ -48,7 +52,6 @@ export class AuthService {
   }
 
   get name() {
-      console.log(this.userInfo.name);
       return this.userInfo.name;
   }
   get givenName() {

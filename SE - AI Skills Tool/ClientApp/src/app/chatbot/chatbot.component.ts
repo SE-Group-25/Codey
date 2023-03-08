@@ -36,7 +36,7 @@ export class ChatbotComponent implements AfterViewChecked {
   }
 
   addUserMessage(s: string) {
-    this.messages.push({"bot":false, "text":s});
+    this.messages.push({"bot":false, "texts":[s]});
     this.updateScroll = true;
   }
 
@@ -50,20 +50,26 @@ export class ChatbotComponent implements AfterViewChecked {
   }
 
   addResponse(s: string) {
-    let newMessage : any = {"bot": true};
+    let newMessage : any = {"bot": true, "texts": []};
     let json = JSON.parse(s);
+    console.log(json);
     for (let k of json['output']['generic'].keys()) {
       switch(json['output']['generic'][k]['response_type']) {
         case 'text':
-          newMessage['text'] = json['output']['generic'][k]['text'];
+          newMessage['texts'].push(json['output']['generic'][k]['text']);
           break;
         case 'option':
           newMessage['options'] = json['output']['generic'][k]['options'];
+          break;
+        case 'suggestion':
+          newMessage['texts'].push(json['output']['generic'][k]['title']);
+          newMessage['suggestions'] = json['output']['generic'][k]['suggestions'];
           break;
       }
     }
     this.messageDto.sessionId = json['user_id'];
     this.addBotMessage(newMessage);
+    console.log(this.messages);
   }
 
   onSubmit(event: any) {
@@ -78,7 +84,7 @@ export class ChatbotComponent implements AfterViewChecked {
     this._chatbot.sendMessage('chatbot/Message', this.messageDto!)
       .subscribe({
         next: (res: MessageResponseDto) => {
-          this.parseResponse(res.responseString);
+          this.addResponse(res.responseString);
           //console.log(res.responseString);
           // let jsonRes = JSON.parse(res.responseString);
           //   this.addBotMessage(jsonRes.output.generic[0].text);
@@ -91,15 +97,15 @@ export class ChatbotComponent implements AfterViewChecked {
 
   chooseOption(option: any) {
     if (!this.canSend) return;
-    this.addUserMessage(option['value']['input']['text']);
+    this.addUserMessage(option['label']);
     // CALL WATSON API WITH message
 
-    this.messageDto!.msgString = option['value']['input']['text'];
+    this.messageDto!.msgString = option['label'];
 
     this._chatbot.sendMessage('chatbot/Message', this.messageDto!)
       .subscribe({
         next: (res: MessageResponseDto) => {
-          this.parseResponse(res.responseString);
+          this.addResponse(res.responseString);
         }});
   }
 }

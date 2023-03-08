@@ -71,6 +71,10 @@ export class ChatbotComponent implements AfterViewChecked {
     console.log(this.messages);
   }
 
+  parseURL(s: string, b: boolean) {
+    return b ? s.replace(/\[([^\[]+)\](\(([^)]*))\)/gim, '<a class="link" href="$3">$1</a>') : s;
+  }
+
   onSubmit(event: any) {
     let message = event.target.text.value;
     if (!this.canSend || message == "") return;

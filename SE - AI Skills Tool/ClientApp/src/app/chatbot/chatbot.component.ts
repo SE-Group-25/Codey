@@ -62,6 +62,7 @@ export class ChatbotComponent implements AfterViewChecked {
           break;
       }
     }
+    this.messageDto.sessionId = json['user_id'];
     this.addBotMessage(newMessage);
   }
 
@@ -71,6 +72,8 @@ export class ChatbotComponent implements AfterViewChecked {
     this.addUserMessage(message);
     // CALL WATSON API WITH message
     this.messageDto!.msgString = message;
+
+    console.log(this.messageDto.sessionId);
 
     this._chatbot.sendMessage('chatbot/Message', this.messageDto!)
       .subscribe({
@@ -90,5 +93,13 @@ export class ChatbotComponent implements AfterViewChecked {
     if (!this.canSend) return;
     this.addUserMessage(option['value']['input']['text']);
     // CALL WATSON API WITH message
+
+    this.messageDto!.msgString = option['value']['input']['text'];
+
+    this._chatbot.sendMessage('chatbot/Message', this.messageDto!)
+      .subscribe({
+        next: (res: MessageResponseDto) => {
+          this.parseResponse(res.responseString);
+        }});
   }
 }

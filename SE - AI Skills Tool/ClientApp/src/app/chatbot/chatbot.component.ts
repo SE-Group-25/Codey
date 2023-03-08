@@ -19,7 +19,7 @@ export class ChatbotComponent implements AfterViewChecked {
   constructor(private _chatbot: ChatbotService) {
     this.messages = [];
 
-    let landingPage = '{"output":{"generic":[{"response_type":"text","text":"Hi, I\'m Codey!\\nHow can I help you today?"},{"options":[{"label":"Tell me about the IBM Skills Build?","value":{"input":{"text":"Tell me about the IBM Skills Build?"}}},{"label":"What can you do to help?","value":{"input":{"text":"What can you do to help?"}}},{"label":"Can you recommend me a course?","value":{"input":{"text":"Can you recommend me a course?"}}},{"label":"Can you direct me to the IBM Skills Build?","value":{"input":{"text":"Can you direct me to the IBM Skills Build?"}}}],"response_type":"option","repeat_on_reprompt":true}]}}';
+    let landingPage = '{"output":{"generic":[{"response_type":"text","text":"Hi, I\'m Codey!\\nHow can I help you today?"},{"options":[{"label":"Tell me about the Skills Build?","value":{"input":{"text":"Tell me about the Skills Build?"}}},{"label":"What can you do to help?","value":{"input":{"text":"What can you do to help?"}}},{"label":"Can you recommend me a course?","value":{"input":{"text":"Can you recommend me a course?"}}},{"label":"Can you direct me to the IBM Skills Build?","value":{"input":{"text":"Can you direct me to the IBM Skills Build?"}}}],"response_type":"option","repeat_on_reprompt":true}]}}';
     this.addResponse(landingPage);
   }
 
@@ -52,7 +52,6 @@ export class ChatbotComponent implements AfterViewChecked {
   addResponse(s: string) {
     let newMessage : any = {"bot": true, "texts": []};
     let json = JSON.parse(s);
-    console.log(json);
     for (let k of json['output']['generic'].keys()) {
       switch(json['output']['generic'][k]['response_type']) {
         case 'text':

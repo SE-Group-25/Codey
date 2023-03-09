@@ -4,7 +4,7 @@
 
 namespace SE_AI_Skills_Tool.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,9 +13,9 @@ namespace SE_AI_Skills_Tool.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SessionId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SessionId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,15 +26,15 @@ namespace SE_AI_Skills_Tool.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Importance = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tags = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tags = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsCostRequired = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IconUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsCostRequired = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>

@@ -23,34 +23,31 @@ namespace SE_AI_Skills_Tool.Migrations
 
             modelBuilder.Entity("SE_AI_Skills_Tool.Models.Course", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("Id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Description");
 
-                    b.Property<string>("Difficulty")
-                        .IsRequired()
+                    b.Property<string>("IconUrl")
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Difficulty");
+                        .HasColumnName("IconUrl");
 
-                    b.Property<bool>("IsAvailable")
+                    b.Property<string>("Importance")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Importance");
+
+                    b.Property<bool>("IsCostRequired")
                         .HasColumnType("bit")
-                        .HasColumnName("IsAvailable");
-
-                    b.Property<string>("IsCostRequired")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("IsCostRequired");
 
+                    b.Property<string>("Keywords")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Keywords");
+
                     b.Property<string>("Tags")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Tags");
 
@@ -81,17 +78,14 @@ namespace SE_AI_Skills_Tool.Migrations
                         .HasColumnName("Id");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FirstName");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("LastName");
 
                     b.Property<string>("SessionId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("SessionId");
 

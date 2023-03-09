@@ -9,29 +9,32 @@ namespace SE_AI_Skills_Tool.Models
         #region Properties
 
         [Column("Description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        [Column("Difficulty")]
-        public string Difficulty { get; set; }
+        [Column("Importance")]
+        public string? Importance { get; set; }
 
         [Column("Id")]
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        [Column("IsAvailable")]
-        public bool IsAvailable { get; set; }
+        [Column("Keywords")]
+        public string? Keywords { get; set; }
 
         [Column("Title")]
         public string Title { get; set; }
 
         [Column("Tags")]
-        public string Tags { get; set; }
+        public string? Tags { get; set; }
 
         [Column("Url")]
         public string Url { get; set; }
+        
+        [Column("IconUrl")]
+        public string? IconUrl { get; set; }
 
         [Column("IsCostRequired")]
-        public string IsCostRequired { get; set; }
+        public bool IsCostRequired { get; set; }
 
         #endregion
     }

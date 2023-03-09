@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SE_AI_Skills_Tool.BusinessLogic;
 using SE_AI_Skills_Tool.Models;
 using SE_AI_Skills_Tool.Services;
 
@@ -16,16 +17,29 @@ namespace SE_AI_Skills_Tool.Controllers
         }
 
         [HttpPost("AddCourses")]
-        public async Task<int> AddCourses(Course[] courses)
+        public async Task<IActionResult> AddCourses(Course[] courses)
         {
             int count = 0;
-            foreach(Course course in courses)
+            try
             {
-                await _courseService.AddCourse(course);
-                count++;
-            }
+                foreach(Course course in courses)
+                {
+                    await _courseService.AddCourseAsync(course);
+                    count++;
+                }
 
-            return count;
+                return Ok(new SuccessDto { IsSuccessful = true, ItemsChanged = count });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new SuccessDto { IsSuccessful = false, ErrorMessage = ex.Message, ItemsChanged = count });
+            }
+        }
+
+        [HttpGet("GetCourses")]
+        public async Task<List<Course>> GetCourses(string searchTerm)
+        {
+            return await _courseService.GetCoursesAsync(searchTerm);
         }
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SE_AI_Skills_Tool.BusinessLogic;
 using SE_AI_Skills_Tool.Context;
 using SE_AI_Skills_Tool.Models;
 
@@ -9,7 +10,7 @@ namespace SE_AI_Skills_Tool.Services
     {
         Task<string> CreateUserAsync(User newUser);
 
-        Task<string> AddCoursesToUserAsync(Course[] courses, string userId);
+        Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser);
 
         Task<Course[]?> GetUserCoursesAsync(User user);
     }
@@ -37,15 +38,15 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<string> AddCoursesToUserAsync(Course[] courses, string userId)
+        public async Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser)
         {
             try
             {
-                var user = await _astDev.Users.Where(u => u.Id == userId).SingleOrDefaultAsync();
+                var user = await _astDev.Users.Where(u => u.Id == coursesToUser.UserId).SingleOrDefaultAsync();
 
                 if (user.Courses != null)
                 {
-                    user.Courses = user.Courses.Concat(courses).ToArray();
+                    user.Courses = user.Courses.Concat(coursesToUser.Courses).ToArray();
                     await _astDev.SaveChangesAsync();
                 }
 

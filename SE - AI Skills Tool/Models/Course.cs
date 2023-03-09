@@ -21,14 +21,17 @@ namespace SE_AI_Skills_Tool.Models
         [Column("IsAvailable")]
         public bool IsAvailable { get; set; }
 
-        [Column("Name")]
-        public string Name { get; set; }
+        [Column("Title")]
+        public string Title { get; set; }
 
         [Column("Tags")]
         public string Tags { get; set; }
 
-        [Column("WebAddress")]
-        public string WebAddress { get; set; }
+        [Column("Url")]
+        public string Url { get; set; }
+
+        [Column("IsCostRequired")]
+        public string IsCostRequired { get; set; }
 
         #endregion
     }

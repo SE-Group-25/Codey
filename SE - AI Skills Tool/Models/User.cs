@@ -19,17 +19,8 @@ namespace SE_AI_Skills_Tool.Models
         [Column("LastName")]
         public string LastName { get; set; }
 
-        [Column("Email")]
-        public string Email { get; set; }
-
-        [Column("Password")]
-        public string Password { get; set; }
-
-        [Column("CreatedOn")]
-        public DateTimeOffset? CreatedOn { get; set; }
-
         [Column("Courses")]
-        public int Courses { get; set; }
+        public Course[] Courses { get; set; }
         
         [Column("SessionId")]
         public string SessionId { get; set; }

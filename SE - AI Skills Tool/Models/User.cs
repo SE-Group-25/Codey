@@ -14,15 +14,15 @@ namespace SE_AI_Skills_Tool.Models
         public string Id { get; set; }
 
         [Column("FirstName")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         [Column("LastName")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         [Column("Courses")]
-        public Course[] Courses { get; set; }
+        public Course[]? Courses { get; set; }
         
         [Column("SessionId")]
-        public string SessionId { get; set; }
+        public string? SessionId { get; set; }
     }
 }

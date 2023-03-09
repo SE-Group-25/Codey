@@ -7,11 +7,11 @@ namespace SE_AI_Skills_Tool.Services
 {
     public interface IUserService
     {
-        Task<string> CreateUser(User newUser);
+        Task<string> CreateUserAsync(User newUser);
 
-        Task<string> AddCoursesToUser(Course[] courses, string userId);
+        Task<string> AddCoursesToUserAsync(Course[] courses, string userId);
 
-        Task<Course[]?> GetUserCourses(User user);
+        Task<Course[]?> GetUserCoursesAsync(User user);
     }
     public class UserService : IUserService
     {
@@ -22,7 +22,7 @@ namespace SE_AI_Skills_Tool.Services
             _astDev = astDev;
         }
 
-        public async Task<string> CreateUser(User newUser)
+        public async Task<string> CreateUserAsync(User newUser)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<string> AddCoursesToUser(Course[] courses, string userId)
+        public async Task<string> AddCoursesToUserAsync(Course[] courses, string userId)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<Course[]?> GetUserCourses(User user)
+        public async Task<Course[]?> GetUserCoursesAsync(User user)
         {
             var userItem = await _astDev.Users.Where(c => c.Id == user.Id).FirstOrDefaultAsync();
             return userItem?.Courses;

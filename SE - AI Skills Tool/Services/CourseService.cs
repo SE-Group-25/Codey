@@ -5,9 +5,9 @@ namespace SE_AI_Skills_Tool.Services
 {
     public interface ICourseService
     {
-        Task<bool> AddCourse(Course course);
+        Task<bool> AddCourseAsync(Course course);
 
-        Task<List<Course>> GetCourses(string searchTerm);
+        Task<List<Course>> GetCoursesAsync(string searchTerm);
     }
 
     public class CourseService : ICourseService
@@ -19,7 +19,7 @@ namespace SE_AI_Skills_Tool.Services
             _astDev = astDev;
         }
 
-        public async Task<bool> AddCourse(Course course)
+        public async Task<bool> AddCourseAsync(Course course)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<List<Course>> GetCourses(string searchTerm)
+        public async Task<List<Course>> GetCoursesAsync(string searchTerm)
         {
             return null;
         }

@@ -4,7 +4,11 @@
       <span *ngFor="let text of message.texts">
         <h6 [ngClass]="message.bot ? 'text-left bot' : 'text-right user'">{{message.bot ? 'Codey' : 'You'}}</h6>
         <div [ngClass]="message.bot ? 'left' : 'right'" class="message rounded-cube">
-          <p class="text" *ngFor="let line of splitMessage(text)" [innerHtml]="parseURL(line, message.bot)"></p>
+          <div class="text-span" *ngFor="let line of splitMessage(text)">
+            <p class="text" *ngIf="message.bot" [innerHtml]="parseURL(line)"></p>
+            <p class="text" *ngIf="!message.bot">{{line}}</p>
+          </div>
+<!--          <p class="text" *ngFor="let line of splitMessage(text)" [innerHtml]="parseURL(line, message.bot)"></p>-->
         </div>
       </span>
       <span *ngIf="message.suggestions !== undefined && message === messages[messages.length - 1]">

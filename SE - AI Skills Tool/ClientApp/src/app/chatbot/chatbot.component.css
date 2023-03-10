@@ -164,12 +164,15 @@
   text-decoration: underline;
 }
 
-.chatbot .text:not(:last-child) {
-  margin-bottom: 0.25rem;
+.chatbot .text {
   text-decoration: none;
+  margin-bottom: 0;
 }
 
-.chatbot .text:last-child {
+.chatbot .text-span:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
+
+.chatbot .text-span:last-child {
   margin-bottom: 0.75rem;
-  text-decoration: none;
 }

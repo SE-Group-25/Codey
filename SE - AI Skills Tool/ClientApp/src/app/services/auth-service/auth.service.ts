@@ -19,7 +19,11 @@ export class AuthService {
   private async initClient() {
     await this.appId.init({
       clientId: '6ba65701-7332-45ac-8a41-839563e7cbf6',
-      discoveryEndpoint: 'https://eu-gb.appid.cloud.ibm.com/oauth/v4/5970f38e-ee73-49f5-9bd8-64c9268e7933/.well-known/openid-configuration'
+      discoveryEndpoint: 'https://eu-gb.appid.cloud.ibm.com/oauth/v4/5970f38e-ee73-49f5-9bd8-64c9268e7933/.well-known/openid-configuration',
+      popup: {
+        width: 500,
+        height: 600
+      }
     });
     if ((sessionStorage.getItem('token')) !== null) {
       await this.setUser(sessionStorage.getItem('token'));
@@ -71,7 +75,6 @@ export class AuthService {
   }
 
   async getUserInfo() {
-    console.log(await this.appId.getUserInfo(this.accessToken));
     return await this.appId.getUserInfo(this.accessToken);
   }
 }

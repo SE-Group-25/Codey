@@ -4,6 +4,7 @@
 
 html {
   font-size: 14px;
+  box-sizing:border-box;
 }
 
 @media (min-width: 768px) {
@@ -42,4 +43,13 @@ code {
   color: rgb(248,249,250);
   font-weight: bolder;
   font-size: medium;
+}
+
+.btn-blue:hover {
+  background-color: #2a2f60;
+  color: rgb(230,230,230);
+}
+
+.text-bolder {
+  font-weight: bolder;
 }

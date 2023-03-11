@@ -55,6 +55,7 @@ export class ChatbotComponent implements AfterViewChecked {
 
   processResults(variables: string[]) {
     this.isChatting = false;
+    console.log(variables);
     // TODO: Process Results
   }
 
@@ -66,12 +67,12 @@ export class ChatbotComponent implements AfterViewChecked {
         case 'text':
           let text = json['output']['generic'][k]['text'];
           if (text.includes('::')) {
-            let variables = text.split('::');
+            let variables = text.split('::').filter((str: string) => str !== '');
             let id = variables.shift();
             switch(id) {
               case 'd93dd9de-2a11-4a40-b10f-42e67e32a945':
                 this.processResults(variables);
-                break;
+                return;
               default:
                 this.initialize();
                 break;

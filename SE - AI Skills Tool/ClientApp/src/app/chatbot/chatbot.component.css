@@ -31,7 +31,7 @@
   background: #172c5d;
 }
 
-.chatbot  .container > :first-child {
+.chatbot .container > :first-child {
   margin-top: auto !important;
 }
 
@@ -49,7 +49,7 @@
 .chatbot .message {
   background-color: #1d3263;
   padding: 0.75rem 1rem 0 1rem;
-  margin-bottom: 0.75rem;
+  /*margin-bottom: 0.75rem;*/
   max-width: 100%;
   line-height: 125%;
 
@@ -104,6 +104,7 @@
   text-decoration: none;
   font-weight: normal;
   text-align: center;
+  cursor: pointer;
 }
 
 .chatbot .form {
@@ -175,4 +176,8 @@
 
 .chatbot .text-span:last-child {
   margin-bottom: 0.75rem;
+}
+
+.chatbot .container .flex-container:not(:first-child) h6 {
+  margin-top: 0.75rem;
 }

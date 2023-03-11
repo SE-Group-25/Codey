@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from "./login/login.component";
 import { ChatbotComponent } from "./chatbot/chatbot.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ChatbotComponent } from "./chatbot/chatbot.component";
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,6 +34,7 @@ import { ChatbotComponent } from "./chatbot/chatbot.component";
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginComponent },
       { path: 'chatbot', component: ChatbotComponent },
+      { path: 'profile', component: ProfileComponent },
     ])
   ],
   providers: [],

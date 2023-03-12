@@ -27,7 +27,7 @@ namespace SE_AI_Skills_Tool.Services
         {
             try
             {
-                User newUser = UserDto
+                User newUser = new User(user.Id);
                 await _astDev.Users.AddAsync(newUser);
                 await _astDev.SaveChangesAsync();
 

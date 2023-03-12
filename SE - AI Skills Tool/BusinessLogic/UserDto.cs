@@ -5,7 +5,7 @@ namespace SE_AI_Skills_Tool.BusinessLogic
 
     public class UserDto
     {
-    
+        public string Id { get; set; } //????? maybe right?
     }
 
     public class AddCoursesToUserDto

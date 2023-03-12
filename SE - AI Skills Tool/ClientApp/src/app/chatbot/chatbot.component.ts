@@ -108,11 +108,11 @@ export class ChatbotComponent implements AfterViewChecked {
 
   callWatson(message: string) {
     this.messageDto!.msgString = message;
-    this._chatbot.sendMessage('chatbot/Message', this.messageDto!)
-      .subscribe({
-        next: (res: MessageResponseDto) => {
-          this.addResponse(res.responseString);
-        }});
+    this._chatbot.sendMessage('chatbot/Message', this.messageDto!).subscribe({
+      next: (res: MessageResponseDto) => {
+        this.addResponse(res.responseString);
+      }
+    });
   }
 
   chooseOption(option: any) {

@@ -17,7 +17,7 @@ namespace SE_AI_Skills_Tool.Controllers
         }
         
         [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser(User user)
+        public async Task<IActionResult> CreateUser(UserDto user)
         {
             var result = await _userService.CreateUserAsync(user);
             if (result == "Success")
@@ -44,8 +44,8 @@ namespace SE_AI_Skills_Tool.Controllers
             }
         }
 
-        [HttpGet("GetUserCourses")]
-        public async Task<Course[]> GetUserCourses(User user)
+        [HttpPost("GetUserCourses")]
+        public async Task<Course[]> GetUserCourses(UserDto user)
         {
             return await _userService.GetUserCoursesAsync(user);
         }

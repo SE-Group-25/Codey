@@ -13,8 +13,9 @@ export class ProfileComponent {
   private userDTo: UserDTo = {};
   constructor(public authService: AuthService, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
     this.courses = [0,0,0,0,0,0,0,0] // TODO: get linked courses here
+    while (!authService.isAuthenticated) { }
     this.userDTo.Id = authService.ID;
-    http.post<CourseResponseDTo[]>(baseUrl + 'GetUserCourses', this.userDTo!).subscribe({
+    http.post<CourseResponseDTo[]>(baseUrl + 'User/GetUserCourses', this.userDTo!).subscribe({
       next: (res: CourseResponseDTo[]) => {
         this.courses = res;
         console.log(res);

@@ -8,7 +8,7 @@ namespace SE_AI_Skills_Tool.Services
 {
     public interface IUserService
     {
-        Task<string> CreateUserAsync(User newUser);
+        Task<string> CreateUserAsync(UserDto newUser);
 
         Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser);
 
@@ -23,10 +23,11 @@ namespace SE_AI_Skills_Tool.Services
             _astDev = astDev;
         }
 
-        public async Task<string> CreateUserAsync(User newUser)
+        public async Task<string> CreateUserAsync(UserDto user)
         {
             try
             {
+                User newUser = UserDto
                 await _astDev.Users.AddAsync(newUser);
                 await _astDev.SaveChangesAsync();
 

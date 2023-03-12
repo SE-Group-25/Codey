@@ -44,8 +44,8 @@ namespace SE_AI_Skills_Tool.Controllers
             }
         }
 
-        [HttpGet("GetUserCourses")]
-        public async Task<Course[]> GetUserCourses(User user)
+        [HttpPost("GetUserCourses")]
+        public async Task<Course[]> GetUserCourses(UserDto user)
         {
             return await _userService.GetUserCoursesAsync(user);
         }

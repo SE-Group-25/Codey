@@ -12,7 +12,7 @@ namespace SE_AI_Skills_Tool.Services
 
         Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser);
 
-        Task<Course[]?> GetUserCoursesAsync(User user);
+        Task<Course[]?> GetUserCoursesAsync(UserDto user);
     }
     public class UserService : IUserService
     {
@@ -58,7 +58,7 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<Course[]?> GetUserCoursesAsync(User user)
+        public async Task<Course[]?> GetUserCoursesAsync(UserDto user)
         {
             var userItem = await _astDev.Users.Where(c => c.Id == user.Id).FirstOrDefaultAsync();
             return userItem?.Courses;

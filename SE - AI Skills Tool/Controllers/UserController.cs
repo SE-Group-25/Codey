@@ -24,6 +24,10 @@ namespace SE_AI_Skills_Tool.Controllers
             {
                 return Ok(new SuccessDto {IsSuccessful = true});
             }
+            else if (result == "Conflict")
+            {
+                return Conflict(new SuccessDto { IsSuccessful = false });
+            }
             else
             {
                 return BadRequest(new SuccessDto { IsSuccessful = false, ErrorMessage = result});

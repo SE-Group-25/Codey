@@ -57,6 +57,13 @@ export class AuthService {
       this.http.post<any>(this.baseUrl + 'User/CreateUser', this.userDTo!).subscribe({
         next: () => {
           console.log("User added to DB");
+        },
+        error: err => {
+          if (err.status == 409){
+            console.log("User already has account")
+          }else{
+            throw err;
+          }
         }
       });
     } catch {

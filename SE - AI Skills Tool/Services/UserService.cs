@@ -28,8 +28,15 @@ namespace SE_AI_Skills_Tool.Services
             try
             {
                 User newUser = new User(user.Id);
-                await _astDev.Users.AddAsync(newUser);
-                await _astDev.SaveChangesAsync();
+                if (!(await _astDev.Users.AnyAsync(u => u.Id == newUser.Id)))
+                {
+                    await _astDev.Users.AddAsync(newUser);
+                    await _astDev.SaveChangesAsync();
+                }
+                else
+                {
+                    return "Conflict";
+                }
 
                 return "Success";
             }

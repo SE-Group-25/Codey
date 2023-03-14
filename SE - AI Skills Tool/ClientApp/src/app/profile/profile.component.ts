@@ -1,8 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { AuthService } from "../services/auth-service/auth.service";
-import { HttpClient } from "@angular/common/http";
-import { UserDto } from "../interfaces/user-dto";
-import { CourseResponseDto } from "../interfaces/course-dto";
+import {Component, Inject} from '@angular/core';
+import {UserDto} from "../interfaces/user-dto";
+import {AuthService} from "../services/auth-service/auth.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-profile',
@@ -10,16 +9,28 @@ import { CourseResponseDto } from "../interfaces/course-dto";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  public courses: any = []; // TODO: change to object
+  public coursesSearched: boolean = false;
+  public userCourses: any = [];
   private userDTo: UserDto = {};
-  constructor(public authService: AuthService, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
-    while (!authService.isInitialised) { }
-    this.userDTo.Id = authService.ID;
-    http.post<any>(baseUrl + 'User/GetUserCourses', this.userDTo!).subscribe({
-      next: (res: any) => {
-        this.courses = res;
-        console.log(res);
-      }
-    });
+  constructor(public authService: AuthService, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+
+  resetCourses() {
+    this.coursesSearched = false;
+    this.userCourses = [];
+  }
+
+  getUserCourses() {
+    try {
+      this.userDTo.Id = this.authService.ID;
+      this.http.post<any>(this.baseUrl + 'User/GetUserCourses', this.userDTo!).subscribe({
+        next: (res: any) => {
+          this.userCourses = res;
+          console.log(res);
+        }
+      });
+      this.coursesSearched = true;
+    } catch (e: unknown) {
+      console.log("Courses not found.\n" + (e as Error).message);
+    }
   }
 }

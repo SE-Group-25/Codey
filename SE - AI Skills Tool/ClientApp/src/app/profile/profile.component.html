@@ -1,18 +1,5 @@
-<div class="courses courses-flex-container rounded-cube" xmlns="http://www.w3.org/1999/html">
-  <div id="scroll_view" class="container">
-    <div class="flex-container" *ngFor="let course of courses">
-      <a target="_blank" style="color: #ffffff; text-decoration: none;" [href]="course.url">
-        <div class="course rounded-cube" style="display: flex; flex-direction: row;">
-          <span style="flex-basis: 1rem;">
-            <img class="rounded-cube" style="width: 6rem; margin: auto 1rem auto 0;" [src]="course.iconUrl"/>
-          </span>
-          <span style="flex-basis: 4rem; flex-grow: 1; margin-right: 1rem;">
-            <h4 class="text">{{course.title}}</h4>
-            <span [innerHTML]=course.description></span>
-          </span>
-          <a style="margin-top: auto;" href="javascript:void(0)"><div class="button_plus rounded-cube"></div></a>
-        </div>
-      </a>
-    </div>
-  </div>
-</div>
+<span *ngIf="!authService.isAuthenticated && coursesSearched ? resetCourses() : false"></span>
+<span *ngIf="authService.isAuthenticated && !coursesSearched ? getUserCourses() : false"></span>
+<p *ngIf="!authService.isAuthenticated">You are not authenticated to access this profile.</p>
+<p *ngIf="authService.isAuthenticated && userCourses.length == 0">There were no courses found linked to this profile.</p>
+<app-courses *ngIf="authService.isAuthenticated && coursesSearched && userCourses.length != 0" [profile]=true [courses]=userCourses></app-courses>

@@ -18,9 +18,13 @@ namespace SE_AI_Skills_Tool.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
-                
             
+            base.OnModelCreating(builder);
+
+            builder.Entity<User>()
+                   .HasMany(u => u.Courses)
+                   .WithOne(c => c.User)
+                   .HasForeignKey(c => c.UserId);
         }
     }
 }

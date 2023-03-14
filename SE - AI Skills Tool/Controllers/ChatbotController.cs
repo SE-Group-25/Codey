@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SE_AI_Skills_Tool.BusinessLogic;
 using SE_AI_Skills_Tool.Services;
 
 
@@ -24,7 +25,7 @@ namespace SE_AI_Skills_Tool.Controllers
         }
 
         [HttpPost("Message")]
-        public string Message(string msgString)
+        public MessageResponseDto Message(string msgString)
         {
             if (sessionId == null)
             {

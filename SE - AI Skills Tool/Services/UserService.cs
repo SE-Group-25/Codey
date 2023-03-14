@@ -12,7 +12,7 @@ namespace SE_AI_Skills_Tool.Services
 
         Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser);
 
-        Task<Course[]?> GetUserCoursesAsync(UserDto user);
+        Task<List<Course>?> GetUserCoursesAsync(UserDto user);
     }
     public class UserService : IUserService
     {
@@ -47,7 +47,7 @@ namespace SE_AI_Skills_Tool.Services
 
                 if (user.Courses != null)
                 {
-                    user.Courses = user.Courses.Concat(coursesToUser.Courses).ToArray();
+                    user.Courses = user.Courses.Concat(coursesToUser.Courses).ToList();
                     await _astDev.SaveChangesAsync();
                 }
 
@@ -59,9 +59,10 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<Course[]?> GetUserCoursesAsync(UserDto user)
+        public async Task<List<Course>?> GetUserCoursesAsync(UserDto user)
         {
-            var userItem = await _astDev.Users.Where(c => c.Id == user.Id).FirstOrDefaultAsync();
+            // var userItem = await _astDev.Users.Where(c => c.Id == user.Id).Include(u => u.Courses).FirstOrDefaultAsync();
+            var userItem = await _astDev.Users.Include(u => u.Courses).FirstOrDefaultAsync(u => u.Id == user.Id);
             return userItem?.Courses;
         }
     }

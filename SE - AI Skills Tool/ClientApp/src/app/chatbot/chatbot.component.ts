@@ -10,12 +10,13 @@ import { MessageDto, MessageResponseDto } from '../interfaces/message-dto';
 export class ChatbotComponent implements AfterViewChecked {
   public messages: Array<any> = [];
   private canSend: boolean = true;
-  private isChatting: boolean = true;
+  public isChatting: boolean = true;
 
   // private oldChatbotDiv: HTMLElement;
 
   public updateScroll: boolean = false;
   public messageDto: MessageDto = {};
+  public userCourses: any = [];
 
   constructor(private _chatbot: ChatbotService) {
     this.initialize();
@@ -56,7 +57,7 @@ export class ChatbotComponent implements AfterViewChecked {
   processResults(variables: string[]) {
     this.isChatting = false;
     console.log(variables);
-    // TODO: Process Results
+    // TODO: Process Results (add to userCourses)
   }
 
   addResponse(s: string) {

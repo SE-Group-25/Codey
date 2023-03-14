@@ -14,7 +14,7 @@ export class AuthService {
   private userDTo: UserDto = {};
   // private attributes: any;
 
-  private isInitialised: boolean = false;
+  public isInitialised: boolean = false;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
     this.appId = new AppID();
@@ -34,6 +34,8 @@ export class AuthService {
       await this.setUser(sessionStorage.getItem('token'));
     }
   }
+
+
 
   get isAuthenticated(): boolean {
     return (!!this.userInfo) && this.isInitialised;

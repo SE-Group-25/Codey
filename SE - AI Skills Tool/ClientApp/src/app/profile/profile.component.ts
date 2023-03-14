@@ -10,13 +10,13 @@ import { CourseResponseDto } from "../interfaces/course-dto";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  public courses: CourseResponseDto[] = []; // TODO: change to object
+  public courses: any = []; // TODO: change to object
   private userDTo: UserDto = {};
   constructor(public authService: AuthService, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
-    while (!authService.isAuthenticated) { }
+    while (!authService.isInitialised) { }
     this.userDTo.Id = authService.ID;
-    http.post<CourseResponseDto[]>(baseUrl + 'User/GetUserCourses', this.userDTo!).subscribe({
-      next: (res: CourseResponseDto[]) => {
+    http.post<any>(baseUrl + 'User/GetUserCourses', this.userDTo!).subscribe({
+      next: (res: any) => {
         this.courses = res;
         console.log(res);
       }

@@ -61,7 +61,6 @@
 }
 
 .course .text {
-  content: "test";
   font-weight: bolder;
 }
 
@@ -72,7 +71,6 @@
   background: #1d3263;
   cursor: pointer;
   border: 2px solid #121f3d;
-  float: right;
 }
 
 .button_plus:after {

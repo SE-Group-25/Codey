@@ -35,6 +35,8 @@ import { ProfileComponent } from "./profile/profile.component";
       { path: 'login', component: LoginComponent },
       { path: 'chatbot', component: ChatbotComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'PageNotFound', component: HomeComponent }, // TODO: replace with PageNotFoundComponent
+      { path: '**', redirectTo: 'PageNotFound'}
     ])
   ],
   providers: [],

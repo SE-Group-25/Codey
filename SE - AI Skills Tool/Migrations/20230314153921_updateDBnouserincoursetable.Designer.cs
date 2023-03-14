@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SE_AI_Skills_Tool.Context;
 
@@ -10,9 +11,10 @@ using SE_AI_Skills_Tool.Context;
 namespace SE_AI_Skills_Tool.Migrations
 {
     [DbContext(typeof(AstDevContext))]
-    partial class AstDevContextModelSnapshot : ModelSnapshot
+    [Migration("20230314153921_updateDBnouserincoursetable")]
+    partial class updateDBnouserincoursetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

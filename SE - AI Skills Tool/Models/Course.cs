@@ -36,7 +36,7 @@ namespace SE_AI_Skills_Tool.Models
         [Column("IsCostRequired")]
         public bool IsCostRequired { get; set; }
         
-        public User? User { get; set; }
+        //public User? User { get; set; }
         
         public string? UserId { get; set; }
 

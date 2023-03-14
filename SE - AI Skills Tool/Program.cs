@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
 using SE_AI_Skills_Tool.Context;
@@ -9,6 +10,9 @@ using SE_AI_Skills_Tool.Extensions;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -34,8 +38,25 @@ else
     throw new Exception("Connection Strings are missing.");
 }
 
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
        .AddEntityFrameworkStores<AstDevContext>();
+
+builder.Services.AddCors(CorsOptions =>
+                         {
+                             CorsOptions.AddPolicy(myAllowSpecificOrigins,
+                                                   builder =>
+                                                   {
+                                                       builder.AllowAnyOrigin()
+                                                              .AllowAnyMethod()
+                                                              .AllowAnyHeader();
+                                                   });
+                         });
+
+builder.Services.AddMvc();
+
+// Registration of my services
+builder.Services.RegisterRepos();
 
 var app = builder.Build();
 
@@ -47,11 +68,14 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(myAllowSpecificOrigins);
+
 app.UseStaticFiles();
 app.UseRouting();
 
 // app.UseAuthentication();
-// app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapControllerRoute(name: "default",
                        pattern: "{controller}/{action=Index}/{id?}");

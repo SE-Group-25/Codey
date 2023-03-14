@@ -2,12 +2,13 @@ using IBM.Cloud.SDK.Core.Authentication.Iam;
 using SE_AI_Skills_Tool.Context;
 using IBM.Watson.Assistant.v2;
 using IBM.Watson.Assistant.v2.Model;
+using SE_AI_Skills_Tool.BusinessLogic;
 
 namespace SE_AI_Skills_Tool.Services
 {
     public interface IWatson
     {
-        string Message(string msgString, string sessionId);
+        MessageResponseDto Message(string msgString, string sessionId);
 
         string CreateSession();
 
@@ -57,7 +58,7 @@ namespace SE_AI_Skills_Tool.Services
                                               );
         }
 
-        public string Message(string msgString, string sessionId)
+        public MessageResponseDto Message(string msgString, string sessionId)
         {
             IamAuthenticator authenticator = new IamAuthenticator(apikey: $"{apikey}");
 
@@ -72,7 +73,12 @@ namespace SE_AI_Skills_Tool.Services
                                                     Text = msgString
                                                 });
             Console.WriteLine(result.Response);
-            return result.Response;
+
+            MessageResponseDto messageResponse = new MessageResponseDto();
+            messageResponse.ResponseString = result.Response;
+            messageResponse.IsSuccessful = true;
+
+            return messageResponse;
         }
     }
 }

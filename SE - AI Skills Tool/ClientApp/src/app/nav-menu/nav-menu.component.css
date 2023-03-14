@@ -11,3 +11,19 @@ a.navbar-brand {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+
+.dropdown-menu-blue {
+  background-color: #061740;
+  min-width: 100%;
+}
+
+.dropdown-menu-blue .dropdown-item {
+  color: rgb(230,230,230);
+  text-align: right;
+}
+
+.dropdown-menu-blue .dropdown-item:hover {
+  background-color: #15264D;
+  /*background-color: #01123A;*/
+  text-align: right;
+}

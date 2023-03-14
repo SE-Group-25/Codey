@@ -8,6 +8,8 @@ namespace SE_AI_Skills_Tool.Extensions
         {
             collection.AddTransient<IWatson, Watson>();
             collection.AddTransient<IWatsonNLUService, WatsonNLUService>();
+            collection.AddTransient<IUserService, UserService>();
+            collection.AddTransient<ICourseService, CourseService>();
         }
     }
 }

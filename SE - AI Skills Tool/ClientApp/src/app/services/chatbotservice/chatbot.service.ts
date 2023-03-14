@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MessageDto, MessageResponseDto } from '../../interfaces/message-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ChatbotService {
     this.baseUrl = baseUrl;
   }
 
-  public sendMessage(route: string, message: string): Observable<string> {
-    return this._http.post<string>(this.baseUrl + route, message);
+  public sendMessage(route: string, messageDto: MessageDto): Observable<MessageResponseDto> {
+    return this._http.post<MessageResponseDto>(this.baseUrl + route, messageDto);
   }
 }

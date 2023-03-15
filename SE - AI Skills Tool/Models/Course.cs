@@ -41,6 +41,6 @@ namespace SE_AI_Skills_Tool.Models
 
         #endregion
         
-        public List<UserCourse> UserCourses { get; set; }
+        public List<UserCourse>? UserCourses { get; set; }
     }
 }

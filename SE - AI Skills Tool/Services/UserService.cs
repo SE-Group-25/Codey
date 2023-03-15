@@ -61,7 +61,7 @@ namespace SE_AI_Skills_Tool.Services
                         user.UserCourses = new List<UserCourse>();
                     }
 
-                    var course = coursesToUser.Courses;
+                    var course = coursesToUser.Course;
                     if (!user.UserCourses.Any(uc => uc.CourseId == course.Id))
                     {
                         var userCourse = new UserCourse
@@ -78,8 +78,7 @@ namespace SE_AI_Skills_Tool.Services
                     //user.UserCourses = user.UserCourses.Concat(coursesToUser.Courses).ToList();
                     // await _astDev.SaveChangesAsync();
                 }
-
-                 return "Fail";
+                return "Fail";
             }
             catch(Exception ex)
             {
@@ -90,8 +89,9 @@ namespace SE_AI_Skills_Tool.Services
         public async Task<List<Course>?> GetUserCoursesAsync(UserDto user)
         {
             // var userItem = await _astDev.Users.Where(c => c.Id == user.Id).Include(u => u.Courses).FirstOrDefaultAsync();
-            var userItem = await _astDev.Users.Include(u => u.UserCourses).ThenInclude(uc => uc.Course).FirstOrDefaultAsync(u => u.Id == user.Id);
-            return (List<Course>?)userItem?.UserCourses.Select(uc => uc.Course);
+            // var userItem = await _astDev.Users.Include(u => u.UserCourses).ThenInclude(uc => uc.Course).FirstOrDefaultAsync(u => u.Id == user.Id);
+            var userItem = await _astDev.UserCourses.Include(uc => uc.Course).Where(uc => uc.UserId == user.Id).Select(uc => uc.Course).ToListAsync();
+            return userItem;
         }
     }
 }

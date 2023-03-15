@@ -10,6 +10,7 @@ namespace SE_AI_Skills_Tool.Context
         public DbSet<User> Users { get; set; }
 
         public DbSet<Course> Courses { get; set; }
+        public DbSet<UserCourse> UserCourses { get; set; }
 
         public AstDevContext(DbContextOptions<AstDevContext> options): base(options)
         {
@@ -18,13 +19,20 @@ namespace SE_AI_Skills_Tool.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            
             base.OnModelCreating(builder);
 
-            // builder.Entity<User>()
-            //        .HasMany(u => u.Courses)
-            //        .WithOne(c => c.User)
-            //        .HasForeignKey(c => c.UserId);
+            builder.Entity<UserCourse>()
+                   .HasKey(uc => new { uc.UserId, uc.CourseId });
+            
+            builder.Entity<UserCourse>()
+                        .HasOne(uc => uc.User)
+                        .WithMany(u => u.UserCourses)
+                        .HasForeignKey(uc => uc.UserId);
+
+            builder.Entity<UserCourse>()
+                        .HasOne(uc => uc.Course)
+                        .WithMany(c => c.UserCourses)
+                        .HasForeignKey(uc => uc.CourseId);
         }
     }
 }

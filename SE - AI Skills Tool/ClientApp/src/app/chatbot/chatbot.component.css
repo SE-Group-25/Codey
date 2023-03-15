@@ -147,8 +147,12 @@
   margin-left: 0.5rem;
 }
 
+.chatbot .form .btn-blue:hover {
+  background-color: #3e66C4;
+}
+
 .chatbot .btn-blue:hover {
-  background-color: #143071;
+  background-color: #354C81;
 }
 
 .chatbot .send {

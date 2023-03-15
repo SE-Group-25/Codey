@@ -34,10 +34,10 @@ namespace SE_AI_Skills_Tool.Controllers
             }
         }
 
-        [HttpPost("AddCoursesToUser")]
+        [HttpPost("AddCourseToUser")]
         public async Task<IActionResult> AddCoursesToUser(AddCoursesToUserDto coursesToUser)
         {
-            var result = await _userService.AddCoursesToUserAsync(coursesToUser);
+            var result = await _userService.AddCourseToUserAsync(coursesToUser);
             if (result == "Success")
             {
                 return Ok(new SuccessDto { IsSuccessful = true });

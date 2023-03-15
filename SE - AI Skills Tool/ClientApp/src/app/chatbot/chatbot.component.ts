@@ -60,6 +60,9 @@ export class ChatbotComponent implements AfterViewChecked {
     this.isChatting = false;
     console.log(variables);
     // TODO: Process Results (add to userCourses)
+    this._chatbot.getCourses('Course/GetCourses', variables).subscribe(
+      {next: res => (this.userCourses = res)}
+    )    ;
   }
 
   addResponse(s: string) {

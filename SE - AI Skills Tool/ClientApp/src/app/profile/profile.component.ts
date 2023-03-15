@@ -30,7 +30,6 @@ export class ProfileComponent implements AfterViewChecked {
       this.http.post<any>(this.baseUrl + 'User/GetUserCourses', this.userDTo!).subscribe({
         next: (res: any) => {
           this.userCourses = res;
-          console.log(res);
         }
       });
       this.coursesSearched = true;

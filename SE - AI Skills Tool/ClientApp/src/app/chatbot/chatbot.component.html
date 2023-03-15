@@ -1,10 +1,14 @@
-<div class="chatbot chatbot-flex-container rounded-cube" xmlns="http://www.w3.org/1999/html">
+<div *ngIf="isChatting" class="chatbot chatbot-flex-container rounded-cube" xmlns="http://www.w3.org/1999/html">
   <div id="scroll_view" class="container">
     <div class="flex-container" *ngFor="let message of messages">
       <span *ngFor="let text of message.texts">
         <h6 [ngClass]="message.bot ? 'text-left bot' : 'text-right user'">{{message.bot ? 'Codey' : 'You'}}</h6>
         <div [ngClass]="message.bot ? 'left' : 'right'" class="message rounded-cube">
-          <p class="text" *ngFor="let line of splitMessage(text)" [innerHtml]="parseURL(line, message.bot)"></p>
+          <div class="text-span" *ngFor="let line of splitMessage(text)">
+            <p class="text" *ngIf="message.bot" [innerHtml]="parseURL(line)"></p>
+            <p class="text" *ngIf="!message.bot">{{line}}</p>
+          </div>
+<!--          <p class="text" *ngFor="let line of splitMessage(text)" [innerHtml]="parseURL(line, message.bot)"></p>-->
         </div>
       </span>
       <span *ngIf="message.suggestions !== undefined && message === messages[messages.length - 1]">
@@ -24,3 +28,5 @@
     <input class="btn-blue form-item" type="submit" value="Send">
   </form>
 </div>
+<app-courses *ngIf="!isChatting && userCourses.length != 0" [profile]=false [courses]=userCourses></app-courses>
+<p *ngIf="!isChatting && userCourses.length == 0">There were no courses found for these choices, please reload and try again.</p>

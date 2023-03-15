@@ -8,11 +8,11 @@ namespace SE_AI_Skills_Tool.Services
 {
     public interface IUserService
     {
-        Task<string> CreateUserAsync(User newUser);
+        Task<string> CreateUserAsync(UserDto newUser);
 
         Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser);
 
-        Task<Course[]?> GetUserCoursesAsync(User user);
+        Task<List<Course>?> GetUserCoursesAsync(UserDto user);
     }
     public class UserService : IUserService
     {
@@ -23,12 +23,20 @@ namespace SE_AI_Skills_Tool.Services
             _astDev = astDev;
         }
 
-        public async Task<string> CreateUserAsync(User newUser)
+        public async Task<string> CreateUserAsync(UserDto user)
         {
             try
             {
-                await _astDev.Users.AddAsync(newUser);
-                await _astDev.SaveChangesAsync();
+                User newUser = new User(user.Id);
+                if (!(await _astDev.Users.AnyAsync(u => u.Id == newUser.Id)))
+                {
+                    await _astDev.Users.AddAsync(newUser);
+                    await _astDev.SaveChangesAsync();
+                }
+                else
+                {
+                    return "Conflict";
+                }
 
                 return "Success";
             }
@@ -46,7 +54,7 @@ namespace SE_AI_Skills_Tool.Services
 
                 if (user.Courses != null)
                 {
-                    user.Courses = user.Courses.Concat(coursesToUser.Courses).ToArray();
+                    user.Courses = user.Courses.Concat(coursesToUser.Courses).ToList();
                     await _astDev.SaveChangesAsync();
                 }
 
@@ -58,9 +66,10 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<Course[]?> GetUserCoursesAsync(User user)
+        public async Task<List<Course>?> GetUserCoursesAsync(UserDto user)
         {
-            var userItem = await _astDev.Users.Where(c => c.Id == user.Id).FirstOrDefaultAsync();
+            // var userItem = await _astDev.Users.Where(c => c.Id == user.Id).Include(u => u.Courses).FirstOrDefaultAsync();
+            var userItem = await _astDev.Users.Include(u => u.Courses).FirstOrDefaultAsync(u => u.Id == user.Id);
             return userItem?.Courses;
         }
     }

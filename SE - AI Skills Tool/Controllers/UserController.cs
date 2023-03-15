@@ -17,12 +17,16 @@ namespace SE_AI_Skills_Tool.Controllers
         }
         
         [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser(User user)
+        public async Task<IActionResult> CreateUser(UserDto user)
         {
             var result = await _userService.CreateUserAsync(user);
             if (result == "Success")
             {
                 return Ok(new SuccessDto {IsSuccessful = true});
+            }
+            else if (result == "Conflict")
+            {
+                return Conflict(new SuccessDto { IsSuccessful = false });
             }
             else
             {
@@ -44,8 +48,8 @@ namespace SE_AI_Skills_Tool.Controllers
             }
         }
 
-        [HttpGet("GetUserCourses")]
-        public async Task<Course[]> GetUserCourses(User user)
+        [HttpPost("GetUserCourses")]
+        public async Task<List<Course>?> GetUserCourses(UserDto user)
         {
             return await _userService.GetUserCoursesAsync(user);
         }

@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {AfterViewChecked, Component, Inject} from '@angular/core';
 import {UserDto} from "../interfaces/user-dto";
 import {AuthService} from "../services/auth-service/auth.service";
 import {HttpClient} from "@angular/common/http";
@@ -8,11 +8,16 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements AfterViewChecked {
   public coursesSearched: boolean = false;
   public userCourses: any = [];
   private userDTo: UserDto = {};
   constructor(public authService: AuthService, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+
+  ngAfterViewChecked() {
+    if (!this.authService.isAuthenticated && this.coursesSearched) this.resetCourses();
+    if (this.authService.isAuthenticated && !this.coursesSearched) this.getUserCourses();
+  }
 
   resetCourses() {
     this.coursesSearched = false;

@@ -1,5 +1,3 @@
-<span *ngIf="!authService.isAuthenticated && coursesSearched ? resetCourses() : false"></span>
-<span *ngIf="authService.isAuthenticated && !coursesSearched ? getUserCourses() : false"></span>
 <p *ngIf="!authService.isAuthenticated">You are not authenticated to access this profile.</p>
 <p *ngIf="authService.isAuthenticated && userCourses.length == 0">There were no courses found linked to this profile.</p>
 <app-courses *ngIf="authService.isAuthenticated && coursesSearched && userCourses.length != 0" [profile]=true [courses]=userCourses></app-courses>

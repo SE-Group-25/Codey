@@ -12,7 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from "./login/login.component";
 import { ChatbotComponent } from "./chatbot/chatbot.component";
 import { CoursesComponent } from "./courses/courses.component";
-import {ProfileComponent} from "./profile/profile.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 @NgModule({
   declarations: [

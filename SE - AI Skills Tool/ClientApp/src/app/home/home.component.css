@@ -6,7 +6,8 @@ body {
 }
 
 a {
-  color: #000000;
+  /*padding: 0.25rem 0.5rem;*/
+  color: #fff;
   text-decoration: none;
 }
 
@@ -15,7 +16,7 @@ a:hover {
 }
 
 .container {
-  max-width: 960px;
+  /*max-width: 960px;*/
   margin: 0 auto;
   padding: 0 15px;
 }
@@ -23,7 +24,6 @@ a:hover {
 /* Codey Section Styles */
 
 .Codey {
-  background-color: #007bff;
   color: #fff;
   padding: 3% 0;
   border-top-right-radius: 60px;
@@ -31,19 +31,19 @@ a:hover {
 }
 
 .Codey__title {
-  color: #000000;
-  font-size: 3rem;
+  color: #fff;
+  font-size: 2rem;
   margin-bottom: 30px;
 }
 
 .Codey__description {
-  font-size: 1.5rem;
+  font-size: 1.05rem;
   margin-bottom: 30px;
 }
 
 .Codey__cta-btn {
   display: inline-block;
-  background-color: #1a1a1a;
+  background-color: #1E46A4;
   color: #fff;
   font-size: 1.5rem;
   padding: 10px 20px;
@@ -53,23 +53,25 @@ a:hover {
 }
 
 .Codey__cta-btn:hover {
-  background-color: #007bff;
+  background-color: #143071;
   color: #fff;
 }
 
 .Codey__login {
-  margin-top: 30px;
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   font-size: 1.2rem;
 }
 
 .Codey__login p {
-  margin: 0 15px;
+  margin: 0 0;
 }
 
 .Codey__signup-link,
 .Codey__continue-link {
+  cursor: pointer;
+  margin: 0 0;
   font-weight: bold;
 }
 

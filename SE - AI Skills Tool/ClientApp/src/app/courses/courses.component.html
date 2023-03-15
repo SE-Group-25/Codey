@@ -6,11 +6,11 @@
           <span style="flex-basis: 1rem;">
             <img class="rounded-cube" style="width: 6rem; margin: auto 1rem auto 0;" [src]="course.iconUrl"/>
           </span>
-          <span style="flex-basis: 4rem; flex-grow: 1; margin-right: 1rem;">
+          <span style="flex-basis: 4rem; flex-grow: 1;">
             <h5 class="text">{{course.title}}</h5>
             <span [innerHTML]=course.description></span>
           </span>
-          <a *ngIf="!profile && authService.isAuthenticated" style="margin-top: auto;" href="javascript:void(0)" (click)="addCourseToUser(course)"><div class="button_plus rounded-cube"></div></a>
+          <a *ngIf="!profile && authService.isAuthenticated" style="margin-top: auto; margin-left: 1rem;" href="javascript:void(0)" (click)="addCourseToUser(course)"><div class="button_plus rounded-cube"></div></a>
         </div>
       </a>
     </div>

@@ -11,17 +11,17 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from "./login/login.component";
 import { ChatbotComponent } from "./chatbot/chatbot.component";
-import { ProfileComponent } from "./profile/profile.component";
+import { CoursesComponent } from "./courses/courses.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     LoginComponent,
     ChatbotComponent,
+    CoursesComponent,
     ProfileComponent
   ],
   imports: [

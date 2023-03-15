@@ -46,8 +46,9 @@ code {
   cursor: pointer;
 }
 
-.btn-blue:hover {
-  background-color: #2a2f60;
+.btn-blue:hover{
+  background-color: #354C81;
+  transition: background-color 0.2s ease;
   color: rgb(230,230,230);
 }
 

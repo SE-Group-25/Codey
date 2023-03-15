@@ -35,8 +35,6 @@ export class AuthService {
     }
   }
 
-
-
   get isAuthenticated(): boolean {
     return (!!this.userInfo) && this.isInitialised;
   }

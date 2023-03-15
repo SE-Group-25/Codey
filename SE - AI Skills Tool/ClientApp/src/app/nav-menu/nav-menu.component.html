@@ -1,9 +1,12 @@
 <header>
   <nav
-    class="navbar navbar-expand-md navbar-toggleable-md navbar-blue py-4 mb-3"
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-dark navbar-blue py-4 mb-3"
   >
     <div class="container">
-      <a class="navbar-brand text-light" [routerLink]="['/']">Codey</a>
+      <a style="display: flex; flex-direction: row;" class="navbar-brand text-light text-bolder" [routerLink]="['/chatbot']">
+<!--        <img class="rounded-cube" style="width: 4rem; margin: auto 0.5rem auto 0;" src="../../assets/favicon.svg"/>-->
+        <p style="margin: auto 0">Codey</p>
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -15,10 +18,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-        [ngClass]="{ show: isExpanded }"
-      >
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
           <li class="nav-item btn-blue mx-2 py-1 my-1" [routerLink]="['/']" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link text-light px-3">Home</a>

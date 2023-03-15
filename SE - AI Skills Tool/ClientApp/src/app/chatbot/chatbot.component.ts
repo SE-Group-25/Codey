@@ -18,6 +18,8 @@ export class ChatbotComponent implements AfterViewChecked {
   public messageDto: MessageDto = {};
   public userCourses: any = [];
 
+  public variables: string[] = [];
+
   constructor(private _chatbot: ChatbotService) {
     this.initialize();
   }
@@ -36,7 +38,7 @@ export class ChatbotComponent implements AfterViewChecked {
     if (!this.updateScroll) return;
 
     let chatbotDiv = window.document.getElementById('scroll_view')!;
-    chatbotDiv.scrollTop = chatbotDiv.scrollHeight;
+    if (chatbotDiv != null) chatbotDiv.scrollTop = chatbotDiv.scrollHeight;
     this.updateScroll = false;
   }
 
@@ -63,6 +65,7 @@ export class ChatbotComponent implements AfterViewChecked {
   addResponse(s: string) {
     let newMessage : any = {"bot": true, "texts": []};
     let json = JSON.parse(s);
+    console.log(json);
     for (let k of json['output']['generic'].keys()) {
       switch(json['output']['generic'][k]['response_type']) {
         case 'text':
@@ -70,10 +73,10 @@ export class ChatbotComponent implements AfterViewChecked {
           if (text.includes('::')) {
             let variables = text.split('::').filter((str: string) => str !== '');
             let id = variables.shift();
-            switch(id) {
+            switch (id) {
               case 'd93dd9de-2a11-4a40-b10f-42e67e32a945':
-                this.processResults(variables);
-                return;
+                this.variables = [...new Set([...this.variables, ...variables])];
+                break;
               default:
                 this.initialize();
                 break;
@@ -90,6 +93,7 @@ export class ChatbotComponent implements AfterViewChecked {
           break;
       }
     }
+    if (this.variables.length != 0) this.processResults(this.variables);
     this.messageDto.sessionId = json['user_id'];
     this.addBotMessage(newMessage);
   }

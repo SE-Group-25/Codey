@@ -1,0 +1,109 @@
+/* Global Styles */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+a {
+  /*padding: 0.25rem 0.5rem;*/
+  color: #5470B1;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration:none;
+}
+
+.container {
+  /*max-width: 960px;*/
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Codey Section Styles */
+
+.Codey {
+  color: #fff;
+  padding: 3% 0;
+  border-top-right-radius: 60px;
+  border-top-left-radius: 60px;
+}
+
+.Codey__title {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.Codey__description {
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+}
+
+.Codey__cta-btn {
+  display: inline-block;
+  background-color: #1E46A4;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin-right: 30px;
+}
+
+.Codey__cta-btn:hover {
+  background-color: #143071;
+  color: #fff;
+}
+
+.Codey__login {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.Codey__login p {
+  margin: 0 0;
+}
+
+.Codey__signup-link,
+.Codey__continue-link {
+  cursor: pointer;
+  margin: 0 0.5rem;
+  font-weight: bold;
+}
+
+.Codey__signup-link:hover,
+.Codey__continue-link:hover {
+  text-decoration: underline;
+}
+
+/* Features Section Styles */
+
+.features {
+  background-color: #152C43;
+  padding: 1% 0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+.feature__title {
+  color: #007bff;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.feature__description {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}

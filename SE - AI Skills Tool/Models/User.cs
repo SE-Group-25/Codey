@@ -23,9 +23,10 @@ namespace SE_AI_Skills_Tool.Models
         [Column("LastName")]
         public string? LastName { get; set; }
 
-        [Column("Courses")]
-        public List<Course> Courses { get; set; }
-        
+        // [Column("Courses")]
+        // public List<Course> Courses { get; set; }
+        public List<UserCourse>? UserCourses { get; set; }
+
         [Column("SessionId")]
         public string? SessionId { get; set; }
     }

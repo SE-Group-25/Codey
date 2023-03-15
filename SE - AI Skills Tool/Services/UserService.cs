@@ -10,7 +10,7 @@ namespace SE_AI_Skills_Tool.Services
     {
         Task<string> CreateUserAsync(UserDto newUser);
 
-        Task<string> AddCourseToUserAsync(AddCoursesToUserDto coursesToUser);
+        Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser);
 
         Task<List<Course>?> GetUserCoursesAsync(UserDto user);
     }
@@ -46,21 +46,39 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<string> AddCourseToUserAsync(AddCoursesToUserDto coursesToUser)
+        // ToDo: FIX THIS SHIT! NO FUCKING CLUE WHAT HAS GONE ON HERE.
+        
+        public async Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser)
         {
             try
             {
-                var user = await _astDev.Users.Where(u => u.Id == coursesToUser.UserId).SingleOrDefaultAsync();
+                var user = await _astDev.Users.Include(u => u.UserCourses).ThenInclude(uc => uc.Course).Where(u => u.Id == coursesToUser.UserId).SingleOrDefaultAsync();
 
                 if (user != null)
                 {
-                    if (user.Courses == null) user.Courses = new List<Course>();
-                    user.Courses = user.Courses.Append(coursesToUser.Course).ToList();
-                }
-                await _astDev.SaveChangesAsync();
-                
+                    if (user.UserCourses == null)
+                    {
+                        user.UserCourses = new List<UserCourse>();
+                    }
 
-                return "Success";
+                    var course = coursesToUser.Course;
+                    if (!user.UserCourses.Any(uc => uc.CourseId == course.Id))
+                    {
+                        var userCourse = new UserCourse
+                                         {
+                                             UserId = coursesToUser.UserId,
+                                             CourseId = course.Id
+                                         };
+
+                        user.UserCourses.Add(userCourse);
+                        await _astDev.SaveChangesAsync();
+                        return "Success";
+                    }
+                    
+                    //user.UserCourses = user.UserCourses.Concat(coursesToUser.Courses).ToList();
+                    // await _astDev.SaveChangesAsync();
+                }
+                return "Fail";
             }
             catch(Exception ex)
             {
@@ -71,8 +89,9 @@ namespace SE_AI_Skills_Tool.Services
         public async Task<List<Course>?> GetUserCoursesAsync(UserDto user)
         {
             // var userItem = await _astDev.Users.Where(c => c.Id == user.Id).Include(u => u.Courses).FirstOrDefaultAsync();
-            var userItem = await _astDev.Users.Include(u => u.Courses).FirstOrDefaultAsync(u => u.Id == user.Id);
-            return userItem?.Courses;
+            // var userItem = await _astDev.Users.Include(u => u.UserCourses).ThenInclude(uc => uc.Course).FirstOrDefaultAsync(u => u.Id == user.Id);
+            var userItem = await _astDev.UserCourses.Include(uc => uc.Course).Where(uc => uc.UserId == user.Id).Select(uc => uc.Course).ToListAsync();
+            return userItem;
         }
     }
 }

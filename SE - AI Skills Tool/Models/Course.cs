@@ -36,10 +36,11 @@ namespace SE_AI_Skills_Tool.Models
         [Column("IsCostRequired")]
         public bool IsCostRequired { get; set; }
         
-        //public User? User { get; set; }
-        
+        [Column("UserId")]
         public string? UserId { get; set; }
 
         #endregion
+        
+        public List<UserCourse>? UserCourses { get; set; }
     }
 }

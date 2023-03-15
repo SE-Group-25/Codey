@@ -1,9 +1,9 @@
 <header>
   <nav
-    class="navbar navbar-expand-md navbar-toggleable-md navbar-dark navbar-blue py-4 mb-3"
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-blue py-4 mb-3"
   >
     <div class="container">
-      <a class="navbar-brand text-light text-bolder" [routerLink]="['/']">Codey</a>
+      <a class="navbar-brand text-light" [routerLink]="['/']">Codey</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -15,39 +15,23 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+        [ngClass]="{ show: isExpanded }"
+      >
         <ul class="navbar-nav flex-grow">
-          <li class="nav-item btn-blue mx-2 py-1 my-1" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-light px-3" [routerLink]="['/']">Home</a>
+          <li
+            class="nav-item btn-blue mx-2 px-3 py-1"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a class="nav-link text-light" [routerLink]="['/']">Home</a>
           </li>
-          <li class="nav-item btn-blue mx-2 py-1 my-1" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light px-3" [routerLink]="['/counter']">Counter</a>
-          </li>
-          <li class="nav-item btn-blue mx-2 py-1 my-1" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light px-3" [routerLink]="['/fetch-data']">Fetch data</a>
-          </li>
-          <li class="nav-item btn-blue mx-2 py-1 my-1" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light px-3" [routerLink]="['/chatbot']">Chatbot</a>
-          </li>
-          <li class="nav-item btn-blue mx-2 py-1 my-1" *ngIf="!authService.isAuthenticated">
-            <a class="nav-link text-light px-3" href="javascript:void(0);" (click)="authService.signIn()">Login</a>
-          </li>
-          <!--Profile Button instead of log out-->
-<!--          <li class="nav-item btn-blue mx-2 py-1 my-1" *ngIf="authService.isAuthenticated">-->
-<!--            <a class="nav-link text-light px-3" href="javascript:void(0);" (click)="authService.signOut()">Logout</a>-->
-<!--          </li>-->
-          <div class="dropdown nav-item btn-blue mx-2 py-1 my-1" *ngIf="authService.isAuthenticated">
-            <a href="javascript:void(0);"
-               class="nav-link text-light px-3" id="profileButton"
-               data-bs-toggle="dropdown" aria-expanded="false"
+          <li class="nav-item btn-blue mx-2 px-3 py-1" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-light" [routerLink]="['/login']"
+            >Login</a
             >
-              {{authService.name}}
-            </a>
-            <ul class="dropdown-menu dropdown-menu-blue dropdown-menu-end" aria-labelledby="profileButton">
-              <li><a class="dropdown-item" href="javascript:void(0);">View Profile</a></li>
-              <li><a class="dropdown-item" style="color: #FF0A0A;" href="javascript:void(0);" (click)="authService.signOut()">Logout</a></li>
-            </ul>
-          </div>
+          </li>
         </ul>
       </div>
     </div>

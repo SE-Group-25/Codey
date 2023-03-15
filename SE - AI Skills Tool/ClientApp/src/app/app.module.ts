@@ -17,8 +17,6 @@ import {ProfileComponent} from "./profile/profile.component";
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     LoginComponent,
     ChatbotComponent,
     CoursesComponent,

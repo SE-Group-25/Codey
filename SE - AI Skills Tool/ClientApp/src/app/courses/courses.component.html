@@ -10,7 +10,7 @@
             <h5 class="text">{{course.title}}</h5>
             <span [innerHTML]=course.description></span>
           </span>
-          <a *ngIf="!profile && authService.isAuthenticated" style="margin-top: auto; margin-left: 1rem;" href="javascript:void(0)" (click)="addCourseToUser(course)"><div class="button_plus rounded-cube"></div></a>
+          <a *ngIf="!courseAdded(course) && !profile && authService.isAuthenticated" style="margin-top: auto; margin-left: 1rem;" href="javascript:void(0)" (click)="addCourseToUser(course)"><div class="button_plus rounded-cube"></div></a>
         </div>
       </a>
     </div>

@@ -1,3 +1,5 @@
+using AutoMapper.Internal;
+using Microsoft.EntityFrameworkCore;
 using SE_AI_Skills_Tool.Context;
 using SE_AI_Skills_Tool.Models;
 
@@ -7,7 +9,7 @@ namespace SE_AI_Skills_Tool.Services
     {
         Task<bool> AddCourseAsync(Course course);
 
-        Task<List<Course>> GetCoursesAsync(string searchTerm);
+        Task<List<Course>> GetCoursesAsync(string[] searchTerm);
     }
 
     public class CourseService : ICourseService
@@ -35,9 +37,15 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<List<Course>> GetCoursesAsync(string searchTerm)
+        public async Task<List<Course>> GetCoursesAsync(string[] searchTerm)
         {
-            return null;
+            List<Course> CourseList = new List<Course>();
+            foreach(string term in searchTerm)
+            {
+                CourseList = CourseList.Concat(await _astDev.Courses.Where(course => course.Tags.Contains(term)).ToListAsync()).ToList();
+            }
+
+            return CourseList;
         }
     }
 }

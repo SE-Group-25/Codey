@@ -36,10 +36,10 @@ namespace SE_AI_Skills_Tool.Controllers
             }
         }
 
-        [HttpGet("GetCourses")]
-        public async Task<List<Course>> GetCourses(string searchTerm)
+        [HttpPost("GetCourses")]
+        public async Task<List<Course>> GetCourses(string[] courseList)
         {
-            return await _courseService.GetCoursesAsync(searchTerm);
+            return await _courseService.GetCoursesAsync(courseList);
         }
     }
 }

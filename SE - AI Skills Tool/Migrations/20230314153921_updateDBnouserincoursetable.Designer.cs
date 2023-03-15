@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SE_AI_Skills_Tool.Context;
 
@@ -10,9 +11,10 @@ using SE_AI_Skills_Tool.Context;
 namespace SE_AI_Skills_Tool.Migrations
 {
     [DbContext(typeof(AstDevContext))]
-    partial class AstDevContextModelSnapshot : ModelSnapshot
+    [Migration("20230314153921_updateDBnouserincoursetable")]
+    partial class updateDBnouserincoursetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,10 +64,11 @@ namespace SE_AI_Skills_Tool.Migrations
                         .HasColumnName("Url");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("UserId");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Courses");
                 });
@@ -93,48 +96,16 @@ namespace SE_AI_Skills_Tool.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SE_AI_Skills_Tool.Models.UserCourse", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CourseId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "CourseId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("UserCourses");
-                });
-
-            modelBuilder.Entity("SE_AI_Skills_Tool.Models.UserCourse", b =>
-                {
-                    b.HasOne("SE_AI_Skills_Tool.Models.Course", "Course")
-                        .WithMany("UserCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SE_AI_Skills_Tool.Models.User", "User")
-                        .WithMany("UserCourses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("SE_AI_Skills_Tool.Models.Course", b =>
                 {
-                    b.Navigation("UserCourses");
+                    b.HasOne("SE_AI_Skills_Tool.Models.User", null)
+                        .WithMany("Courses")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SE_AI_Skills_Tool.Models.User", b =>
                 {
-                    b.Navigation("UserCourses");
+                    b.Navigation("Courses");
                 });
 #pragma warning restore 612, 618
         }

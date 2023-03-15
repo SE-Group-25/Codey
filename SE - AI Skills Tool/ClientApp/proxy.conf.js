@@ -6,7 +6,9 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 const PROXY_CONFIG = [
   {
     context: [
-      "/weatherforecast", "/chatbot/Message", "/chatbot/StartChat", "/chatbot/EndChat", "/Course/AddCourses", "/User"
+      "/chatbot/Message", "/chatbot/StartChat", "/chatbot/EndChat",
+      "/Course/AddCourses", "/Course/GetCourses",
+      "/User/CreateUser", "/User/AddCourseToUser", "/User/GetUserCourses"
    ],
     target: target,
     secure: false,

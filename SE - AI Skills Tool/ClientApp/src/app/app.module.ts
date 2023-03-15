@@ -11,16 +11,18 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from "./login/login.component";
 import { ChatbotComponent } from "./chatbot/chatbot.component";
+import { CoursesComponent } from "./courses/courses.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     LoginComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    CoursesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,6 +34,9 @@ import { ChatbotComponent } from "./chatbot/chatbot.component";
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginComponent },
       { path: 'chatbot', component: ChatbotComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'PageNotFound', component: HomeComponent }, // TODO: replace with PageNotFoundComponent
+      { path: '**', redirectTo: 'PageNotFound'}
     ])
   ],
   providers: [],

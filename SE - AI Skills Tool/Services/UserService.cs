@@ -10,7 +10,7 @@ namespace SE_AI_Skills_Tool.Services
     {
         Task<string> CreateUserAsync(UserDto newUser);
 
-        Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser);
+        Task<string> AddCourseToUserAsync(AddCoursesToUserDto coursesToUser);
 
         Task<List<Course>?> GetUserCoursesAsync(UserDto user);
     }
@@ -46,17 +46,19 @@ namespace SE_AI_Skills_Tool.Services
             }
         }
 
-        public async Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser)
+        public async Task<string> AddCourseToUserAsync(AddCoursesToUserDto coursesToUser)
         {
             try
             {
                 var user = await _astDev.Users.Where(u => u.Id == coursesToUser.UserId).SingleOrDefaultAsync();
 
-                if (user.Courses != null)
+                if (user != null)
                 {
-                    user.Courses = user.Courses.Concat(coursesToUser.Courses).ToList();
-                    await _astDev.SaveChangesAsync();
+                    if (user.Courses == null) user.Courses = new List<Course>();
+                    user.Courses = user.Courses.Append(coursesToUser.Course).ToList();
                 }
+                await _astDev.SaveChangesAsync();
+                
 
                 return "Success";
             }

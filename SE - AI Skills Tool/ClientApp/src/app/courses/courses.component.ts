@@ -56,9 +56,9 @@ export class CoursesComponent {
   }
 
   addCourseToUser(course: CourseResponseDto) {
-    // TODO: make call to add the course to user database.
+    // make call to add the course to user database.
     this.addedCourses.push(course);
     this.transferObject = {course: course, userId: this.authService.ID};
-    this._chatbot.addCourseToUser("User/AddCourseToUser", this.transferObject).subscribe({next: res => console.log(res)})
+    this._chatbot.addCourseToUser("User/AddCourseToUser", this.transferObject).subscribe({next: res => console.log("")})
   }
 }

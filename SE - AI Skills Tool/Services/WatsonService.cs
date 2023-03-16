@@ -19,7 +19,7 @@ namespace SE_AI_Skills_Tool.Services
     {
         private readonly AstDevContext _astDev;
 
-        // TODO: Watson API calls and handling returned values from watson. Ensure async running
+        // Watson API calls and handling returned values from watson. Ensure async running
 
         private readonly string apikey = "JdmrMV_bf1p5RBwUFvmHYfC8dQzI8GNC7bUR4RRtBr_s";
         private readonly string url = "https://api.au-syd.assistant.watson.cloud.ibm.com/instances/dfad6e7a-2714-4f7f-ba32-4537dd5370f8";
@@ -72,7 +72,6 @@ namespace SE_AI_Skills_Tool.Services
                                                 {
                                                     Text = msgString
                                                 });
-            Console.WriteLine(result.Response);
 
             MessageResponseDto messageResponse = new MessageResponseDto();
             messageResponse.ResponseString = result.Response;

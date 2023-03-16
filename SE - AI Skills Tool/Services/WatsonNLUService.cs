@@ -51,7 +51,6 @@ namespace SE_AI_Skills_Tool.Services
                                          text: "Themes will be chosen from contemporary areas of computer vision including the following: edge features, contours and shape fitting. feature points for object detection and classification. stereo vision (3D point clouds and depth images). object classification using distributions of gradient information. background modelling and object tracking. end-to-end image classification and real-time object detection via deep machine learning. image and video mosaicking and 3D scene reconstruction. visual odometry for autonomous navigation."
                                         );
 
-            Console.WriteLine(result.Response);
         }
     }
 }

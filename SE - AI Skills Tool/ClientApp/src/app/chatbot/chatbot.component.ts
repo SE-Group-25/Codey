@@ -59,7 +59,7 @@ export class ChatbotComponent implements AfterViewChecked {
   processResults(variables: string[]) {
     this.isChatting = false;
     console.log(variables);
-    // TODO: Process Results (add to userCourses)
+    // Process Results (add to userCourses)
     this._chatbot.getCourses('Course/GetCourses', variables).subscribe(
       {next: res => (this.userCourses = res)}
     )    ;
@@ -68,7 +68,6 @@ export class ChatbotComponent implements AfterViewChecked {
   addResponse(s: string) {
     let newMessage : any = {"bot": true, "texts": []};
     let json = JSON.parse(s);
-    console.log(json);
     for (let k of json['output']['generic'].keys()) {
       switch(json['output']['generic'][k]['response_type']) {
         case 'text':

@@ -45,8 +45,6 @@ namespace SE_AI_Skills_Tool.Services
                 return ex.Message;
             }
         }
-
-        // ToDo: FIX THIS SHIT! NO FUCKING CLUE WHAT HAS GONE ON HERE.
         
         public async Task<string> AddCoursesToUserAsync(AddCoursesToUserDto coursesToUser)
         {
